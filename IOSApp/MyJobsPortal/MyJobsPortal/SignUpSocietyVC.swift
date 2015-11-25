@@ -17,9 +17,17 @@ class SignUpSocietyVC: UIViewController, UIImagePickerControllerDelegate, UINavi
     @IBOutlet weak var txtPassword: UITextField!
     @IBOutlet weak var txtConfirmePassword: UITextField!
     @IBOutlet weak var txtAddress: UITextField!
+    @IBOutlet weak var txtResume: UITextField!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        txtName.delegate = self
+        txtMail.delegate = self
+        txtPhone.delegate = self
+        txtPassword.delegate = self
+        txtConfirmePassword.delegate = self
+        txtAddress.delegate = self
+        txtResume.delegate = self
     }
 
     override func didReceiveMemoryWarning() {
@@ -97,10 +105,11 @@ class SignUpSocietyVC: UIViewController, UIImagePickerControllerDelegate, UINavi
         let address : String = txtAddress.text!
         let password : String = txtPassword.text!
         let password_confirm : String = txtConfirmePassword.text!
+        let description : String = txtResume.text!
         let titleError : NSString = "La connexion a échoué !"
         
         do {
-            let url : NSURL = NSURL(string:"http://localhost/~louischeminant/MyJobsPortal/jsonsignup.php")!
+            let url : NSURL = NSURL(string:"http://10.10.253.107/~louischeminant/MyJobsPortalAPI/jsonsignup.php")!
             let boundary = generateBoundaryString()
             let param = [
                 "name"          : name,
@@ -109,7 +118,8 @@ class SignUpSocietyVC: UIViewController, UIImagePickerControllerDelegate, UINavi
                 "address"       : address,
                 "password"      : password,
                 "c_password"    : password_confirm,
-                "db"            : "compagny"
+                "description"   : description,
+                "db"            : "compagnies"
             ]
             let imageData = UIImageJPEGRepresentation(logoImage.image!, 1)
             if(imageData==nil)  { return; }

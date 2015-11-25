@@ -17,19 +17,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         let prefs:NSUserDefaults = NSUserDefaults.standardUserDefaults()
         let isLoggedInUser:Int = prefs.integerForKey("ISLOGGEDINUSER") as Int
-//        if (isLoggedInUser == 1) {
-//            let storyboard = UIStoryboard(name: "Main", bundle: nil)
-//            let mainViewController = storyboard.instantiateViewControllerWithIdentifier("MainUser") as? SWRevealViewController
-//            self.window?.rootViewController = mainViewController
-//            self.window?.makeKeyAndVisible()
-//        }
-//        let isLoggedInCompagny:Int = prefs.integerForKey("ISLOGGEDINCOMPAGNY") as Int
-//        if (isLoggedInCompagny == 1) {
-//            let storyboard = UIStoryboard(name: "Main", bundle: nil)
-//            let mainViewController = storyboard.instantiateViewControllerWithIdentifier("MainCompagny") as? SWRevealViewController
-//            self.window?.rootViewController = mainViewController
-//            self.window?.makeKeyAndVisible()
-//        }
+        if (isLoggedInUser == 1) {
+            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+            let mainViewController = storyboard.instantiateViewControllerWithIdentifier("MainUser") as? SWRevealViewController
+            self.window?.rootViewController = mainViewController
+            self.window?.makeKeyAndVisible()
+        }
+        let isLoggedInCompagny:Int = prefs.integerForKey("ISLOGGEDINCOMPAGNY") as Int
+        if (isLoggedInCompagny == 1) {
+            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+            let mainViewController = storyboard.instantiateViewControllerWithIdentifier("MainCompagny") as? SWRevealViewController
+            self.window?.rootViewController = mainViewController
+            self.window?.makeKeyAndVisible()
+        }
 
         return true
     }

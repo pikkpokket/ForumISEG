@@ -364,13 +364,13 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="E-Mail" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="adK-WN-LSx">
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="E-Mail" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="adK-WN-LSx">
                                 <rect key="frame" x="20" y="254" width="560" height="30"/>
                                 <animations/>
                                 <fontDescription key="fontDescription" type="system" pointSize="21"/>
                                 <textInputTraits key="textInputTraits" autocorrectionType="no" keyboardType="emailAddress"/>
                             </textField>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Mot de passe" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="pFq-Ir-4Rw">
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Mot de passe" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="pFq-Ir-4Rw">
                                 <rect key="frame" x="20" y="307" width="560" height="30"/>
                                 <animations/>
                                 <fontDescription key="fontDescription" type="system" pointSize="21"/>
@@ -395,7 +395,7 @@
                                     <action selector="signinTapped:" destination="uvd-as-xtb" eventType="touchUpInside" id="gAS-Sv-NT3"/>
                                 </connections>
                             </button>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Logo" translatesAutoresizingMaskIntoConstraints="NO" id="WEr-MW-4gk">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="Logo" translatesAutoresizingMaskIntoConstraints="NO" id="WEr-MW-4gk">
                                 <rect key="frame" x="0.0" y="20" width="130" height="72"/>
                                 <animations/>
                                 <constraints>
@@ -403,7 +403,7 @@
                                     <constraint firstAttribute="height" constant="72" id="q0K-HU-MCH"/>
                                 </constraints>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="S'identifier" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ndL-Vv-JDN">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="S'identifier" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ndL-Vv-JDN">
                                 <rect key="frame" x="20" y="134" width="560" height="41"/>
                                 <animations/>
                                 <fontDescription key="fontDescription" type="system" pointSize="34"/>
@@ -492,6 +492,9 @@
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <action selector="validTapped:" destination="6b9-LN-rTt" eventType="editingDidEndOnExit" id="ndE-9G-vTN"/>
+                                </connections>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="E-Mail" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="H2c-xB-0PE">
                                 <rect key="frame" x="20" y="280" width="560" height="30"/>
@@ -501,6 +504,9 @@
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <action selector="validTapped:" destination="6b9-LN-rTt" eventType="editingDidEndOnExit" id="57w-Hv-MXz"/>
+                                </connections>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Classe" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="2Dl-wS-q1S">
                                 <rect key="frame" x="20" y="220" width="560" height="30"/>
@@ -510,6 +516,9 @@
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <action selector="validTapped:" destination="6b9-LN-rTt" eventType="editingDidEndOnExit" id="hql-4L-16i"/>
+                                </connections>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Prénom" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Jzv-n1-gUu">
                                 <rect key="frame" x="20" y="160" width="560" height="30"/>
@@ -519,6 +528,9 @@
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <action selector="validTapped:" destination="6b9-LN-rTt" eventType="editingDidEndOnExit" id="w1u-vA-JgB"/>
+                                </connections>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rTF-4N-my8">
                                 <rect key="frame" x="227" y="513" width="146" height="67"/>
@@ -543,6 +555,9 @@
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
+                                <connections>
+                                    <action selector="validTapped:" destination="6b9-LN-rTt" eventType="editingDidEndOnExit" id="MBK-pY-Keq"/>
+                                </connections>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Confirmer votre mot de passe" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="cCz-sd-Rfe">
                                 <rect key="frame" x="20" y="400" width="560" height="30"/>
@@ -552,6 +567,9 @@
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
+                                <connections>
+                                    <action selector="validTapped:" destination="6b9-LN-rTt" eventType="editingDidEndOnExit" id="wuy-ux-lim"/>
+                                </connections>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Nom" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="sdJ-81-TWF">
                                 <rect key="frame" x="20" y="100" width="560" height="30"/>
@@ -561,6 +579,9 @@
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <action selector="validTapped:" destination="6b9-LN-rTt" eventType="editingDidEndOnExit" id="C7b-mj-hKX"/>
+                                </connections>
                             </textField>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Logo" translatesAutoresizingMaskIntoConstraints="NO" id="ea3-9q-wIA">
                                 <rect key="frame" x="0.0" y="20" width="130" height="72"/>
@@ -639,7 +660,7 @@
                                     <constraint firstAttribute="height" constant="30" id="qI7-PH-Pfb"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="words" autocorrectionType="no"/>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="E-Mail" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="9oD-wc-dM5">
                                 <rect key="frame" x="20" y="159" width="560" height="30"/>
@@ -648,7 +669,7 @@
                                     <constraint firstAttribute="height" constant="30" id="krd-Za-SdN"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <textInputTraits key="textInputTraits" autocorrectionType="no" keyboardType="emailAddress"/>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KZ8-2c-neg">
                                 <rect key="frame" x="227" y="525" width="146" height="67"/>
@@ -673,13 +694,8 @@
                                     <constraint firstAttribute="height" constant="30" id="8iO-HD-etQ"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="words" autocorrectionType="no"/>
                             </textField>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="pIs-83-cvS">
-                                <rect key="frame" x="20" y="435" width="240" height="82"/>
-                                <animations/>
-                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
-                            </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EqH-fj-RUB">
                                 <rect key="frame" x="310" y="461" width="63" height="30"/>
                                 <animations/>
@@ -698,7 +714,7 @@
                                     <constraint firstAttribute="height" constant="30" id="3Tn-uA-yap"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
+                                <textInputTraits key="textInputTraits" autocorrectionType="no" secureTextEntry="YES"/>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Confirmer votre mot de passe" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="DAH-W1-10h">
                                 <rect key="frame" x="20" y="311" width="560" height="30"/>
@@ -707,7 +723,7 @@
                                     <constraint firstAttribute="height" constant="30" id="AwO-kr-Ws8"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
+                                <textInputTraits key="textInputTraits" autocorrectionType="no" secureTextEntry="YES"/>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Téléphone" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="xsD-3w-GDS">
                                 <rect key="frame" x="20" y="235" width="560" height="30"/>
@@ -716,7 +732,7 @@
                                     <constraint firstAttribute="height" constant="30" id="ZeM-DU-ZOU"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <textInputTraits key="textInputTraits" autocorrectionType="no" keyboardType="phonePad"/>
                             </textField>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Inscription" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zVe-n4-Edk">
                                 <rect key="frame" x="222" y="72" width="157" height="41"/>
@@ -728,18 +744,17 @@
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Confirmer votre mot de passe" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="iOu-o5-kzs">
-                                <rect key="frame" x="20" y="354" width="560" height="30"/>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Description de votre entreprise" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="dok-av-YlX">
+                                <rect key="frame" x="20" y="349" width="560" height="30"/>
                                 <animations/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences" autocorrectionType="no"/>
                             </textField>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Description de votre entreprise" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="dok-av-YlX">
-                                <rect key="frame" x="20" y="392" width="560" height="30"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="pIs-83-cvS">
+                                <rect key="frame" x="20" y="435" width="240" height="82"/>
                                 <animations/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
-                            </textField>
+                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                            </imageView>
                         </subviews>
                         <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -747,12 +762,10 @@
                             <constraint firstItem="DAH-W1-10h" firstAttribute="trailing" secondItem="nYe-z9-vMb" secondAttribute="trailingMargin" id="0IM-0e-U5E"/>
                             <constraint firstItem="xsD-3w-GDS" firstAttribute="top" secondItem="JXo-zI-T3V" secondAttribute="bottom" constant="8" id="2KW-wC-GtX"/>
                             <constraint firstItem="EqH-fj-RUB" firstAttribute="leading" secondItem="pIs-83-cvS" secondAttribute="trailing" constant="50" id="2Xe-e3-mh3"/>
-                            <constraint firstItem="iOu-o5-kzs" firstAttribute="top" secondItem="DAH-W1-10h" secondAttribute="bottom" constant="13" id="2ue-hu-ket"/>
                             <constraint firstItem="JXo-zI-T3V" firstAttribute="leading" secondItem="nYe-z9-vMb" secondAttribute="leadingMargin" id="3if-rz-ed7"/>
                             <constraint firstItem="Q6U-po-rIG" firstAttribute="top" secondItem="KZ8-2c-neg" secondAttribute="bottom" constant="8" symbolic="YES" id="4kk-fA-F0a"/>
                             <constraint firstItem="9oD-wc-dM5" firstAttribute="trailing" secondItem="nYe-z9-vMb" secondAttribute="trailingMargin" id="5F2-T4-4bs"/>
                             <constraint firstItem="DAH-W1-10h" firstAttribute="centerX" secondItem="KZ8-2c-neg" secondAttribute="centerX" id="5Ts-qM-UMe"/>
-                            <constraint firstItem="iOu-o5-kzs" firstAttribute="leading" secondItem="nYe-z9-vMb" secondAttribute="leadingMargin" id="6js-5i-TD7"/>
                             <constraint firstItem="EqH-fj-RUB" firstAttribute="top" secondItem="DAH-W1-10h" secondAttribute="bottom" constant="120" id="6mT-Vv-tgq"/>
                             <constraint firstItem="9oD-wc-dM5" firstAttribute="top" secondItem="D5h-JG-j74" secondAttribute="bottom" constant="8" symbolic="YES" id="Cll-xV-XHA"/>
                             <constraint firstItem="zVe-n4-Edk" firstAttribute="top" secondItem="yof-VA-cT5" secondAttribute="bottom" constant="8" symbolic="YES" id="D6F-xk-GKk"/>
@@ -762,7 +775,10 @@
                             <constraint firstItem="xsD-3w-GDS" firstAttribute="trailing" secondItem="nYe-z9-vMb" secondAttribute="trailingMargin" id="GLi-jA-bZq"/>
                             <constraint firstItem="JXo-zI-T3V" firstAttribute="top" secondItem="9oD-wc-dM5" secondAttribute="bottom" constant="8" id="LHN-Zp-CDV"/>
                             <constraint firstItem="KZ8-2c-neg" firstAttribute="top" secondItem="pIs-83-cvS" secondAttribute="bottom" constant="8" id="Lwt-MU-KLB"/>
+                            <constraint firstItem="dok-av-YlX" firstAttribute="trailing" secondItem="DAH-W1-10h" secondAttribute="trailing" id="O38-bZ-8aH"/>
                             <constraint firstItem="JXo-zI-T3V" firstAttribute="trailing" secondItem="nYe-z9-vMb" secondAttribute="trailingMargin" id="PDK-Wa-Iy9"/>
+                            <constraint firstItem="dok-av-YlX" firstAttribute="top" secondItem="DAH-W1-10h" secondAttribute="bottom" constant="8" symbolic="YES" id="PvF-2F-sAA"/>
+                            <constraint firstItem="dok-av-YlX" firstAttribute="leading" secondItem="DAH-W1-10h" secondAttribute="leading" id="RDP-Ci-fdg"/>
                             <constraint firstItem="LrK-AT-4M2" firstAttribute="top" secondItem="xsD-3w-GDS" secondAttribute="bottom" constant="8" id="bEU-3t-WzH"/>
                             <constraint firstItem="D5h-JG-j74" firstAttribute="leading" secondItem="9oD-wc-dM5" secondAttribute="leading" id="fDr-Nx-55b"/>
                             <constraint firstItem="D5h-JG-j74" firstAttribute="trailing" secondItem="9oD-wc-dM5" secondAttribute="trailing" id="ifa-em-kBY"/>
@@ -775,7 +791,6 @@
                             <constraint firstItem="D5h-JG-j74" firstAttribute="centerX" secondItem="zVe-n4-Edk" secondAttribute="centerX" id="wa7-pP-M2k"/>
                             <constraint firstItem="LrK-AT-4M2" firstAttribute="trailing" secondItem="nYe-z9-vMb" secondAttribute="trailingMargin" id="wzp-ae-CiV"/>
                             <constraint firstItem="xsD-3w-GDS" firstAttribute="leading" secondItem="nYe-z9-vMb" secondAttribute="leadingMargin" id="x8W-IB-xvK"/>
-                            <constraint firstItem="iOu-o5-kzs" firstAttribute="trailing" secondItem="nYe-z9-vMb" secondAttribute="trailingMargin" id="yxe-cP-Nss"/>
                         </constraints>
                     </view>
                     <connections>
@@ -786,6 +801,7 @@
                         <outlet property="txtName" destination="D5h-JG-j74" id="jSY-oe-lid"/>
                         <outlet property="txtPassword" destination="LrK-AT-4M2" id="WkX-ch-ATF"/>
                         <outlet property="txtPhone" destination="xsD-3w-GDS" id="WKa-8b-Qgd"/>
+                        <outlet property="txtResume" destination="dok-av-YlX" id="fxf-ff-R0t"/>
                         <segue destination="K2U-hW-u5J" kind="show" identifier="pushMainSignUpCompagny" id="zxM-IO-c1T"/>
                     </connections>
                 </viewController>
@@ -1475,17 +1491,12 @@ Rue Lateulade
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Logo" translatesAutoresizingMaskIntoConstraints="NO" id="Jhd-fn-3Gs">
-                                <rect key="frame" x="0.0" y="20" width="130" height="72"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Bienvenue Louis Cheminant" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QBl-BD-stO">
+                                <rect key="frame" x="205" y="72" width="190" height="18"/>
                                 <animations/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="130" id="4oK-FN-xVq"/>
-                                    <constraint firstAttribute="height" constant="72" id="Cp6-xF-0xV"/>
+                                    <constraint firstAttribute="width" constant="190" id="wPv-E8-Llg"/>
                                 </constraints>
-                            </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Bienvenue Louis Cheminant" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QBl-BD-stO">
-                                <rect key="frame" x="368" y="31" width="190" height="18"/>
-                                <animations/>
                                 <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
@@ -1494,10 +1505,8 @@ Rue Lateulade
                         <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstAttribute="trailingMargin" secondItem="QBl-BD-stO" secondAttribute="trailing" constant="23" id="3Ke-Sz-lF3"/>
-                            <constraint firstItem="QBl-BD-stO" firstAttribute="top" secondItem="bvQ-Xa-tqF" secondAttribute="topMargin" constant="31" id="6IA-zx-6ty"/>
-                            <constraint firstItem="Jhd-fn-3Gs" firstAttribute="leading" secondItem="bvQ-Xa-tqF" secondAttribute="leadingMargin" constant="-20" id="LMc-xq-wdi"/>
-                            <constraint firstItem="Jhd-fn-3Gs" firstAttribute="top" secondItem="bvQ-Xa-tqF" secondAttribute="top" constant="20" symbolic="YES" id="XVX-HE-7GR"/>
+                            <constraint firstItem="QBl-BD-stO" firstAttribute="top" secondItem="igj-sq-JDD" secondAttribute="bottom" constant="8" symbolic="YES" id="FNR-Ez-nci"/>
+                            <constraint firstItem="QBl-BD-stO" firstAttribute="centerX" secondItem="bvQ-Xa-tqF" secondAttribute="centerX" id="vvt-Qq-vQc"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="NTP-Kh-pf3">
@@ -1592,9 +1601,6 @@ Rue Lateulade
                                         </tableViewCellContentView>
                                         <animations/>
                                         <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                        <connections>
-                                            <segue destination="cvm-mL-EIk" kind="custom" customClass="SWRevealViewControllerSeguePushController" id="GHf-3B-DSc"/>
-                                        </connections>
                                     </tableViewCell>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="nro-oW-Iy6">
                                         <rect key="frame" x="0.0" y="88" width="600" height="44"/>
@@ -1620,7 +1626,7 @@ Rue Lateulade
                                         <animations/>
                                         <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                         <connections>
-                                            <segue destination="fKE-xY-zSg" kind="custom" identifier="" customClass="SWRevealViewControllerSeguePushController" id="wiT-Mn-OEs"/>
+                                            <segue destination="fKE-xY-zSg" kind="custom" customClass="SWRevealViewControllerSeguePushController" id="U1a-uc-sv5"/>
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="aP8-hX-p1b">
@@ -1647,7 +1653,7 @@ Rue Lateulade
                                         <animations/>
                                         <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                         <connections>
-                                            <segue destination="NfW-Ku-EOV" kind="custom" customClass="SWRevealViewControllerSeguePushController" id="4Ce-A4-mIn"/>
+                                            <segue destination="pyH-e6-70R" kind="custom" customClass="SWRevealViewControllerSeguePushController" id="3eq-Zz-Tqo"/>
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="qAg-rn-QpU">
@@ -1689,117 +1695,6 @@ Rue Lateulade
                 <placeholder placeholderIdentifier="IBFirstResponder" id="E9p-Cm-CQq" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="4707" y="951"/>
-        </scene>
-        <!--Create Offer View Controller-->
-        <scene sceneID="eO4-XH-8fB">
-            <objects>
-                <viewController id="hEW-kD-GZg" customClass="CreateOfferViewController" customModule="MyJobsPortal" customModuleProvider="target" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="GZU-DH-AQS"/>
-                        <viewControllerLayoutGuide type="bottom" id="RwS-Hx-sfG"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="v3q-oa-GAO">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="KLT-L3-fXp">
-                                <rect key="frame" x="20" y="86" width="560" height="29"/>
-                                <animations/>
-                                <segments>
-                                    <segment title="Job"/>
-                                    <segment title="Stage"/>
-                                    <segment title="Césure"/>
-                                </segments>
-                            </segmentedControl>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Intitulé de l'offre" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="YSm-8N-FHu">
-                                <rect key="frame" x="20" y="137" width="560" height="30"/>
-                                <animations/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </textField>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="B7n-SW-Xwa">
-                                <rect key="frame" x="20" y="185" width="560" height="128"/>
-                                <animations/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="128" id="w7v-Ia-ehJ"/>
-                                </constraints>
-                                <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
-                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                            </textView>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="xkH-Bd-u5b">
-                                <rect key="frame" x="20" y="321" width="560" height="128"/>
-                                <animations/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                            </textView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3IY-2F-jd9">
-                                <rect key="frame" x="227" y="522" width="146" height="67"/>
-                                <animations/>
-                                <color key="backgroundColor" red="0.16078431369999999" green="0.53725490200000003" blue="0.0078431372550000003" alpha="1" colorSpace="calibratedRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="146" id="Nmx-RS-PT0"/>
-                                    <constraint firstAttribute="height" constant="67" id="Y6t-QV-lr0"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="26"/>
-                                <state key="normal" title="Je valide">
-                                    <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                </state>
-                                <connections>
-                                    <action selector="validTapped:" destination="hEW-kD-GZg" eventType="touchUpInside" id="8HA-Kf-WH4"/>
-                                </connections>
-                            </button>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Niveau d'étude minimum souhaité" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Fs3-ga-81l">
-                                <rect key="frame" x="20" y="467" width="560" height="30"/>
-                                <animations/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </textField>
-                        </subviews>
-                        <animations/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstItem="RwS-Hx-sfG" firstAttribute="top" secondItem="Fs3-ga-81l" secondAttribute="bottom" constant="103" id="CTc-57-Mou"/>
-                            <constraint firstItem="3IY-2F-jd9" firstAttribute="top" secondItem="Fs3-ga-81l" secondAttribute="bottom" constant="25" id="J5q-Yb-fst"/>
-                            <constraint firstItem="KLT-L3-fXp" firstAttribute="trailing" secondItem="YSm-8N-FHu" secondAttribute="trailing" id="Kiz-gf-Sbx"/>
-                            <constraint firstItem="YSm-8N-FHu" firstAttribute="trailing" secondItem="B7n-SW-Xwa" secondAttribute="trailing" id="Laa-mG-Xmd"/>
-                            <constraint firstItem="xkH-Bd-u5b" firstAttribute="trailing" secondItem="Fs3-ga-81l" secondAttribute="trailing" id="QOc-qW-ANL"/>
-                            <constraint firstItem="xkH-Bd-u5b" firstAttribute="leading" secondItem="B7n-SW-Xwa" secondAttribute="leading" id="SGy-Xk-gYa"/>
-                            <constraint firstItem="B7n-SW-Xwa" firstAttribute="trailing" secondItem="xkH-Bd-u5b" secondAttribute="trailing" id="Syp-9Y-f3Y"/>
-                            <constraint firstItem="B7n-SW-Xwa" firstAttribute="top" secondItem="YSm-8N-FHu" secondAttribute="bottom" constant="18" id="UEa-5B-FE8"/>
-                            <constraint firstItem="Fs3-ga-81l" firstAttribute="trailing" secondItem="v3q-oa-GAO" secondAttribute="trailingMargin" id="YqC-uG-UvS"/>
-                            <constraint firstItem="Fs3-ga-81l" firstAttribute="top" secondItem="xkH-Bd-u5b" secondAttribute="bottom" constant="18" id="aIb-PB-spd"/>
-                            <constraint firstItem="xkH-Bd-u5b" firstAttribute="top" secondItem="B7n-SW-Xwa" secondAttribute="bottom" constant="8" symbolic="YES" id="f8L-Vz-cM1"/>
-                            <constraint firstItem="KLT-L3-fXp" firstAttribute="leading" secondItem="YSm-8N-FHu" secondAttribute="leading" id="j6K-RC-mrp"/>
-                            <constraint firstItem="Fs3-ga-81l" firstAttribute="leading" secondItem="xkH-Bd-u5b" secondAttribute="leading" id="lHA-57-bnR"/>
-                            <constraint firstItem="YSm-8N-FHu" firstAttribute="leading" secondItem="B7n-SW-Xwa" secondAttribute="leading" id="nxI-HA-mYo"/>
-                            <constraint firstItem="B7n-SW-Xwa" firstAttribute="leading" secondItem="v3q-oa-GAO" secondAttribute="leadingMargin" id="pXk-nk-EFo"/>
-                            <constraint firstItem="KLT-L3-fXp" firstAttribute="top" secondItem="GZU-DH-AQS" secondAttribute="bottom" constant="22" id="qdT-hA-OAv"/>
-                            <constraint firstItem="YSm-8N-FHu" firstAttribute="top" secondItem="KLT-L3-fXp" secondAttribute="bottom" constant="23" id="sSu-3B-Ytr"/>
-                            <constraint firstItem="3IY-2F-jd9" firstAttribute="centerX" secondItem="Fs3-ga-81l" secondAttribute="centerX" id="wTt-XE-LqT"/>
-                        </constraints>
-                    </view>
-                    <toolbarItems/>
-                    <navigationItem key="navigationItem" id="8Ec-td-cOB">
-                        <barButtonItem key="leftBarButtonItem" image="menu48-4" id="QVz-Zp-l1e">
-                            <color key="tintColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
-                        </barButtonItem>
-                    </navigationItem>
-                    <connections>
-                        <outlet property="choiceSC" destination="KLT-L3-fXp" id="bUM-ah-wsi"/>
-                        <outlet property="menuBtn" destination="QVz-Zp-l1e" id="wiM-cY-jNy"/>
-                        <outlet property="txtLevel" destination="Fs3-ga-81l" id="vff-Sh-K5r"/>
-                        <outlet property="txtMission" destination="xkH-Bd-u5b" id="Y6P-kM-gsF"/>
-                        <outlet property="txtResume" destination="B7n-SW-Xwa" id="qFe-Bd-4Hk"/>
-                        <outlet property="txtTitleOffer" destination="YSm-8N-FHu" id="WuG-6q-DU1"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="lk6-FU-oco" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="6291" y="1733"/>
         </scene>
         <!--Recruiter View Controller-->
         <scene sceneID="97b-Y0-o9s">
@@ -1996,25 +1891,6 @@ Rue Lateulade
             <point key="canvasLocation" x="7829" y="1076"/>
         </scene>
         <!--Navigation Controller-->
-        <scene sceneID="B6l-bR-FKb">
-            <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="NfW-Ku-EOV" sceneMemberID="viewController">
-                    <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="3zD-iQ-oIQ">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                        <animations/>
-                    </navigationBar>
-                    <nil name="viewControllers"/>
-                    <connections>
-                        <segue destination="hEW-kD-GZg" kind="relationship" relationship="rootViewController" id="Ehw-bc-s6M"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="qCV-Td-ULn" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="5495" y="1733"/>
-        </scene>
-        <!--Navigation Controller-->
         <scene sceneID="01X-Bj-kGs">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="fKE-xY-zSg" sceneMemberID="viewController">
@@ -2104,7 +1980,6 @@ Rue Lateulade
                                                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Intitulé du poste" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="jWP-eF-plh">
                                                     <rect key="frame" x="8" y="0.0" width="584" height="44"/>
                                                     <animations/>
-                                                    <color key="textColor" red="0.73333333333333328" green="0.72941176470588232" blue="0.75686274509803919" alpha="1" colorSpace="calibratedRGB"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <textInputTraits key="textInputTraits"/>
                                                 </textField>
@@ -2123,44 +1998,18 @@ Rue Lateulade
                             </tableViewSection>
                             <tableViewSection headerTitle="" id="0cd-w0-Hnn">
                                 <cells>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" rowHeight="160" id="HTM-or-FRW">
-                                        <rect key="frame" x="0.0" y="259" width="600" height="160"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="HTM-or-FRW" id="k49-1N-giv">
-                                            <rect key="frame" x="0.0" y="0.0" width="600" height="159.5"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="Description de l'entreprise" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="vW5-aI-vjT">
-                                                    <rect key="frame" x="8" y="8" width="584" height="150"/>
-                                                    <animations/>
-                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                    <color key="textColor" red="0.73333333329999995" green="0.72941176470000002" blue="0.75686274509999996" alpha="1" colorSpace="calibratedRGB"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                    <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                                                </textView>
-                                            </subviews>
-                                            <animations/>
-                                            <constraints>
-                                                <constraint firstItem="vW5-aI-vjT" firstAttribute="top" secondItem="k49-1N-giv" secondAttribute="topMargin" id="19y-te-ll0"/>
-                                                <constraint firstItem="vW5-aI-vjT" firstAttribute="leading" secondItem="k49-1N-giv" secondAttribute="leadingMargin" id="6G5-a1-HgV"/>
-                                                <constraint firstAttribute="bottomMargin" secondItem="vW5-aI-vjT" secondAttribute="bottom" constant="-6.5" id="ezS-na-fwL"/>
-                                                <constraint firstItem="vW5-aI-vjT" firstAttribute="trailing" secondItem="k49-1N-giv" secondAttribute="trailingMargin" id="hUN-mq-hG0"/>
-                                            </constraints>
-                                        </tableViewCellContentView>
-                                        <animations/>
-                                    </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" rowHeight="160" id="PGm-AR-79l">
-                                        <rect key="frame" x="0.0" y="419" width="600" height="160"/>
+                                        <rect key="frame" x="0.0" y="259" width="600" height="160"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="PGm-AR-79l" id="Xwz-ED-795">
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="159.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="Description de l'offre" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="W72-ZH-d7K">
-                                                    <rect key="frame" x="8" y="5" width="584" height="150"/>
+                                                    <rect key="frame" x="3" y="5" width="589" height="150"/>
                                                     <animations/>
                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                    <color key="textColor" red="0.73333333329999995" green="0.72941176470000002" blue="0.75686274509999996" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                                 </textView>
@@ -2169,7 +2018,7 @@ Rue Lateulade
                                             <constraints>
                                                 <constraint firstItem="W72-ZH-d7K" firstAttribute="centerY" secondItem="Xwz-ED-795" secondAttribute="centerY" id="1VD-7S-130"/>
                                                 <constraint firstItem="W72-ZH-d7K" firstAttribute="top" secondItem="Xwz-ED-795" secondAttribute="topMargin" constant="-3" id="F4g-5s-GGt"/>
-                                                <constraint firstItem="W72-ZH-d7K" firstAttribute="leading" secondItem="Xwz-ED-795" secondAttribute="leadingMargin" id="f8d-bT-GCm"/>
+                                                <constraint firstItem="W72-ZH-d7K" firstAttribute="leading" secondItem="Xwz-ED-795" secondAttribute="leadingMargin" constant="-5" id="f8d-bT-GCm"/>
                                                 <constraint firstItem="W72-ZH-d7K" firstAttribute="trailing" secondItem="Xwz-ED-795" secondAttribute="trailingMargin" id="fEQ-fv-4bZ"/>
                                             </constraints>
                                         </tableViewCellContentView>
@@ -2180,7 +2029,7 @@ Rue Lateulade
                             <tableViewSection id="zxJ-at-gep">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" id="UXN-rJ-h8V">
-                                        <rect key="frame" x="0.0" y="615" width="600" height="44"/>
+                                        <rect key="frame" x="0.0" y="455" width="600" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="UXN-rJ-h8V" id="NYr-tz-DcI">
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="43.5"/>
@@ -2189,7 +2038,6 @@ Rue Lateulade
                                                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Niveau d'étude minimum souhaité" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="gIZ-hv-WdN">
                                                     <rect key="frame" x="8" y="0.0" width="584" height="44"/>
                                                     <animations/>
-                                                    <color key="textColor" red="0.73333333329999995" green="0.72941176470000002" blue="0.75686274509999996" alpha="1" colorSpace="calibratedRGB"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <textInputTraits key="textInputTraits"/>
                                                 </textField>
@@ -2209,7 +2057,7 @@ Rue Lateulade
                             <tableViewSection id="lzc-ln-TT9">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" textLabel="RTW-0g-lwC" detailTextLabel="f9d-K1-8K6" style="IBUITableViewCellStyleValue1" id="MCV-sG-sNE">
-                                        <rect key="frame" x="0.0" y="695" width="600" height="44"/>
+                                        <rect key="frame" x="0.0" y="535" width="600" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="MCV-sG-sNE" id="oaO-7z-y0i">
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="43.5"/>
@@ -2237,7 +2085,7 @@ Rue Lateulade
                                         <animations/>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" rowHeight="216" id="itv-nX-asI">
-                                        <rect key="frame" x="0.0" y="739" width="600" height="216"/>
+                                        <rect key="frame" x="0.0" y="579" width="600" height="216"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="itv-nX-asI" id="7iq-Xe-qWL">
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="215.5"/>
@@ -2265,7 +2113,7 @@ Rue Lateulade
                                         <animations/>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" textLabel="O8P-zi-GJx" detailTextLabel="jCI-1w-jcc" style="IBUITableViewCellStyleValue1" id="hjg-W0-8aK">
-                                        <rect key="frame" x="0.0" y="955" width="600" height="44"/>
+                                        <rect key="frame" x="0.0" y="795" width="600" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="hjg-W0-8aK" id="zNb-1g-ZXe">
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="43.5"/>
@@ -2293,7 +2141,7 @@ Rue Lateulade
                                         <animations/>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" rowHeight="216" id="BDw-0V-usJ">
-                                        <rect key="frame" x="0.0" y="999" width="600" height="216"/>
+                                        <rect key="frame" x="0.0" y="839" width="600" height="216"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="BDw-0V-usJ" id="OBA-Uc-rEc">
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="215.5"/>
@@ -2321,7 +2169,7 @@ Rue Lateulade
                                         <animations/>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" textLabel="cPN-HG-c3y" detailTextLabel="1Sl-M7-CU9" style="IBUITableViewCellStyleValue1" id="ybs-Rf-3g6">
-                                        <rect key="frame" x="0.0" y="1215" width="600" height="44"/>
+                                        <rect key="frame" x="0.0" y="1055" width="600" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="ybs-Rf-3g6" id="QQN-iT-6Tj">
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="43.5"/>
@@ -2349,7 +2197,7 @@ Rue Lateulade
                                         <animations/>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" rowHeight="216" id="yNO-lX-waO">
-                                        <rect key="frame" x="0.0" y="1259" width="600" height="216"/>
+                                        <rect key="frame" x="0.0" y="1099" width="600" height="216"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="yNO-lX-waO" id="cR6-lJ-lPm">
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="215.5"/>
@@ -2384,7 +2232,13 @@ Rue Lateulade
                             <outlet property="delegate" destination="5oc-LQ-ApY" id="f5s-fb-how"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Nouvelle offre" id="tTb-Fk-pQT"/>
+                    <navigationItem key="navigationItem" title="Nouvelle offre" id="tTb-Fk-pQT">
+                        <barButtonItem key="rightBarButtonItem" title="Terminé" id="T7x-cu-dkv">
+                            <connections>
+                                <action selector="validTapped:" destination="5oc-LQ-ApY" id="XXV-rn-nXt"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="datePickerDuring" destination="ZL7-kg-TB9" id="nEy-5u-oFY"/>
                         <outlet property="datePickerEnd" destination="eGQ-EY-RnA" id="1uq-JS-rO7"/>
@@ -2393,11 +2247,14 @@ Rue Lateulade
                         <outlet property="detailLabelEnd" destination="jCI-1w-jcc" id="N6i-Wf-agF"/>
                         <outlet property="detailLabelStart" destination="f9d-K1-8K6" id="QhH-A9-LZ7"/>
                         <outlet property="scType" destination="Eib-tr-tqy" id="uTM-ty-3fK"/>
+                        <outlet property="txtLevel" destination="gIZ-hv-WdN" id="PJM-FM-PHH"/>
+                        <outlet property="txtMission" destination="W72-ZH-d7K" id="ZYx-ZK-32O"/>
+                        <outlet property="txtOffer" destination="jWP-eF-plh" id="vVb-VW-Dmk"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jcU-D4-S3P" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="7829" y="1755"/>
+            <point key="canvasLocation" x="6291" y="1813"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="KMo-qx-JL1">
@@ -2416,7 +2273,7 @@ Rue Lateulade
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5vb-yj-1z1" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="7017" y="1733"/>
+            <point key="canvasLocation" x="5495" y="1813"/>
         </scene>
     </scenes>
     <resources>
@@ -2430,7 +2287,6 @@ Rue Lateulade
     <inferredMetricsTieBreakers>
         <segue reference="mxJ-aZ-Jhe"/>
         <segue reference="zxM-IO-c1T"/>
-        <segue reference="TyG-t8-5VU"/>
-        <segue reference="aI2-z9-sb2"/>
+        <segue reference="6WI-xh-2sc"/>
     </inferredMetricsTieBreakers>
 </document>

@@ -23,6 +23,13 @@ class SignUpUserVC: UIViewController, UITextFieldDelegate {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        txtLastname.delegate = self
+        txtName.delegate = self
+        txtClass.delegate = self
+        txtMail.delegate = self
+        txtPassword.delegate = self
+        txtConfirmPassword.delegate = self
+        //tField.delegate = self
     }
 
     override func didReceiveMemoryWarning() {
@@ -71,9 +78,9 @@ class SignUpUserVC: UIViewController, UITextFieldDelegate {
             self.errorAlert("L'inscription a échoué !", message: "Les mots de passe sont différents")
         } else {
             do {
-                let post:NSString = "login=\(login)&code=\(code)"
-                let url : NSURL = NSURL(string:"http://localhost/~louischeminant/MyJobsPortal/jsonemail.php")!
-                let postData:NSData = post.dataUsingEncoding(NSASCIIStringEncoding)!
+                let post:NSString = "mail=\(login)&code=\(code)"
+                let url : NSURL = NSURL(string:"http://10.10.253.107/~louischeminant/MyJobsPortalAPI/jsonemail.php")!
+                let postData:NSData = post.dataUsingEncoding(NSUTF8StringEncoding)!
                 let postLength:NSString = String(postData.length)
                 let session = NSURLSession.sharedSession()
             
@@ -148,8 +155,8 @@ class SignUpUserVC: UIViewController, UITextFieldDelegate {
         
         if (code == code2) {
             do {
-                let post:NSString = "lastname=\(lastname)&name=\(name)&class=\(classSchool)&login=\(login)&password=\(password)&c_password=\(confirm_password)&phone=\(nbr_phone)&db=users"
-                let url : NSURL = NSURL(string:"http://localhost/~louischeminant/MyJobsPortal/jsonsignup.php")!
+                let post:NSString = "lastname=\(lastname)&name=\(name)&class=\(classSchool)&mail=\(login)&password=\(password)&c_password=\(confirm_password)&phone=\(nbr_phone)&db=users"
+                let url : NSURL = NSURL(string:"http://10.10.253.107/~louischeminant/MyJobsPortalAPI/jsonsignup.php")!
                 let postData:NSData = post.dataUsingEncoding(NSASCIIStringEncoding)!
                 let postLength:NSString = String(postData.length)
                 let session = NSURLSession.sharedSession()

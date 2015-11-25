@@ -8,7 +8,7 @@
 
 import UIKit
 
-class AddRecuiterViewController: UIViewController {
+class AddRecuiterViewController: UIViewController, UITextFieldDelegate {
 
     @IBOutlet weak var txtName: UITextField!
     @IBOutlet weak var txtLastName: UITextField!
@@ -20,6 +20,11 @@ class AddRecuiterViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        txtLastName.delegate = self
+        txtName.delegate = self
+        txtMail.delegate = self
+        txtPosition.delegate = self
+        txtPhone.delegate = self
     }
 
     override func didReceiveMemoryWarning() {

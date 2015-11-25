@@ -45,9 +45,9 @@ class LoginSocietyVC: UIViewController, UITextFieldDelegate {
             self.errorAlert(titleError as String, message: "Veuillez rentrer votre login et votre mot de passe")
         } else {
             do {
-                let post : NSString = "login=\(login)&password=\(password)&db=compagny"
-                let url : NSURL = NSURL(string:"http://localhost/~louischeminant/MyJobsPortal/jsonlogin.php")!
-                let postData:NSData = post.dataUsingEncoding(NSASCIIStringEncoding)!
+                let post : NSString = "mail=\(login)&password=\(password)&db=compagnies"
+                let url : NSURL = NSURL(string:"http://10.10.253.107/~louischeminant/MyJobsPortalAPI/jsonlogin.php")!
+                let postData:NSData = post.dataUsingEncoding(NSUTF8StringEncoding)!
                 let postLength:NSString = String(postData.length)
                 let session = NSURLSession.sharedSession()
                 
