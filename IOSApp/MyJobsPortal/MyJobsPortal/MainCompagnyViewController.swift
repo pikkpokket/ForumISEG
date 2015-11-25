@@ -36,9 +36,9 @@ class MainCompagnyViewController: UIViewController {
         let titleError : NSString = "La connexion a échoué !"
         
         do {
-            let post:NSString = "login=\(login)&db=compagny"
-            let url : NSURL = NSURL(string:"http://localhost/~louischeminant/MyJobsPortal/jsonconnect.php")!
-            let postData:NSData = post.dataUsingEncoding(NSASCIIStringEncoding)!
+            let post:NSString = "mail=\(login)&db=compagnies"
+            let url : NSURL = NSURL(string:"http://10.10.253.107/~louischeminant/MyJobsPortalAPI/jsonconnect.php")!
+            let postData:NSData = post.dataUsingEncoding(NSUTF8StringEncoding)!
             let postLength:NSString = String(postData.length)
             let session = NSURLSession.sharedSession()
             

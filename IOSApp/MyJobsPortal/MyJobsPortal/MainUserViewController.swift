@@ -63,8 +63,8 @@ class MainViewController: UIViewController, UICollectionViewDelegate, UICollecti
         
         do {
             let post:NSString = "login=\(login)&db=users"
-            let url : NSURL = NSURL(string:"http://localhost/~louischeminant/MyJobsPortal/jsonconnect.php")!
-            let postData:NSData = post.dataUsingEncoding(NSASCIIStringEncoding)!
+            let url : NSURL = NSURL(string:"http://10.10.253.107/~louischeminant/MyJobsPortalAPI/jsonconnect.php")!
+            let postData:NSData = post.dataUsingEncoding(NSUTF8StringEncoding)!
             let postLength:NSString = String(postData.length)
             let session = NSURLSession.sharedSession()
             
@@ -101,9 +101,11 @@ class MainViewController: UIViewController, UICollectionViewDelegate, UICollecti
     func entrepriseDisplay() {
         do {
             let session = NSURLSession.sharedSession()
-            let url : NSURL = NSURL(string:"http://localhost/~louischeminant/MyJobsPortal/jsonentreprise.php")!
+            let url : NSURL = NSURL(string:"http://10.10.253.107/~louischeminant/MyJobsPortalAPI/jsonentreprise.php")!
             let task = session.dataTaskWithURL(url, completionHandler: {data, response, error -> Void in
                 let res : NSHTTPURLResponse = response as! NSHTTPURLResponse
+                let responseData:NSString  = NSString(data:data!, encoding:NSUTF8StringEncoding)!
+                NSLog("Response ==> %@", responseData);
                 if (res.statusCode >= 200 && res.statusCode < 300) {
                     do {
                         let jsonData = try NSJSONSerialization.JSONObjectWithData(data!, options:NSJSONReadingOptions.MutableContainers ) as! NSMutableArray
@@ -113,20 +115,16 @@ class MainViewController: UIViewController, UICollectionViewDelegate, UICollecti
                             let jsonElement : NSDictionary = jsonData[i] as! NSDictionary
                             let newEntreprise : Entreprise = Entreprise()
                             
-                            newEntreprise.name = jsonElement["name_compagny"] as! String
+                            newEntreprise.name = jsonElement["compagny"] as! String
                             newEntreprise.offer = jsonElement["offer"] as! String
                             newEntreprise.missions = jsonElement["missions"] as! String
-                            newEntreprise.resume = jsonElement["resume"] as! String
                             newEntreprise.level = jsonElement["level"] as! String
-                            newEntreprise.contact = jsonElement["contact"] as! String
                             newEntreprise.address = jsonElement["address"] as! String
                             newEntreprise.longitude = jsonElement["longitude"] as! String
                             newEntreprise.latitude = jsonElement["latitude"] as! String
-                            newEntreprise.start = jsonElement["start"] as! String
-                            newEntreprise.end = jsonElement["end"] as! String
                             newEntreprise.type = jsonElement["type"] as! String
                             
-                            logoArray[i] = jsonElement["name_compagny"] as! String
+                            logoArray[i] = jsonElement["compagny"] as! String
                             
                             self.entreprise.addObject(newEntreprise)
                         }
@@ -164,7 +162,7 @@ class MainViewController: UIViewController, UICollectionViewDelegate, UICollecti
         
         if let data : NSMutableArray = NSUserDefaults.standardUserDefaults().valueForKey("logoData") as? NSMutableArray {
             print(data)
-            let url : String = "http://localhost/~louischeminant/MyJobsPortal/Images/apercu.php?img_nom=\(data.objectAtIndex(indexPath.row))"
+            let url : String = "http://10.10.253.107/~louischeminant/MyJobsPortalAPI/Images/apercu.php?img_nom=\(data.objectAtIndex(indexPath.row))"
             let data2 : NSData = NSData(contentsOfURL: NSURL(string: url)!)!
         
             cell.logoImage.image = UIImage(data: data2)

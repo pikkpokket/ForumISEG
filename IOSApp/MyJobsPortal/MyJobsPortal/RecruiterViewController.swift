@@ -31,8 +31,8 @@ class RecruiterViewController: UIViewController, UITableViewDelegate, UITableVie
         
         do {
             let post:NSString = "compagny=\(compagny)"
-            let url : NSURL = NSURL(string:"http://localhost/~louischeminant/MyJobsPortal/jsoncontact.php")!
-            let postData:NSData = post.dataUsingEncoding(NSASCIIStringEncoding)!
+            let url : NSURL = NSURL(string:"http://localhost/~louischeminant/MyJobsPortalAPI/jsoncontact.php")!
+            let postData:NSData = post.dataUsingEncoding(NSUTF8StringEncoding)!
             let postLength:NSString = String(postData.length)
             let session = NSURLSession.sharedSession()
             
