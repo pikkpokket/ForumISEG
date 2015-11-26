@@ -33,7 +33,7 @@ class RecruiterViewController: UIViewController, UITableViewDelegate, UITableVie
         
         do {
             let post:NSString = "compagny=\(compagny)"
-            let url : NSURL = NSURL(string:"http://localhost/~louischeminant/MyJobsPortalAPI/jsoncontact.php")!
+            let url : NSURL = NSURL(string:"http://192.168.22.149/~louischeminant/MyJobsPortalAPI/jsoncontact.php")!
             let postData:NSData = post.dataUsingEncoding(NSUTF8StringEncoding)!
             let postLength:NSString = String(postData.length)
             let session = NSURLSession.sharedSession()
@@ -48,12 +48,16 @@ class RecruiterViewController: UIViewController, UITableViewDelegate, UITableVie
             let task = session.dataTaskWithRequest(request, completionHandler: {data, response, error -> Void in
                 if (data != nil) {
                     let res : NSHTTPURLResponse = response as! NSHTTPURLResponse
+                    let responseData:NSString  = NSString(data:data!, encoding:NSUTF8StringEncoding)!
+                    NSLog("Response ==> %@", responseData);
                     if (res.statusCode >= 200 && res.statusCode < 300) {
                         do {
                             let jsonData = try NSJSONSerialization.JSONObjectWithData(data!, options:NSJSONReadingOptions.MutableContainers ) as! NSMutableArray
                             for (var i = 0; i < jsonData.count; i++) {
                                 self.recruiters.append(jsonData[i] as! [String])
+                                print(jsonData[i] as! [String])
                             }
+                            self.RecruiterTV.reloadData()
                         } catch {
                             print(error)
                         }
@@ -102,6 +106,7 @@ class RecruiterViewController: UIViewController, UITableViewDelegate, UITableVie
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+                print(recruiters.count)
         return recruiters.count
     }
     
@@ -109,6 +114,9 @@ class RecruiterViewController: UIViewController, UITableViewDelegate, UITableVie
         let cell = tableView.dequeueReusableCellWithIdentifier("recruiterCell", forIndexPath: indexPath)
         
         cell.textLabel!.text = "\(recruiters[indexPath.row][1]) \(recruiters[indexPath.row][2])"
+        if (recruiters[indexPath.row][6] == "1") {
+            cell.accessoryType = .Checkmark;
+        }
         
         return cell
     }
@@ -116,16 +124,18 @@ class RecruiterViewController: UIViewController, UITableViewDelegate, UITableVie
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         if tableView.cellForRowAtIndexPath(indexPath)?.accessoryType == .Checkmark {
             tableView.cellForRowAtIndexPath(indexPath)?.accessoryType = .None
-            recruiters[indexPath.row] += ["0"]
+            recruiters[indexPath.row][6] = "0"
         } else {
             tableView.cellForRowAtIndexPath(indexPath)?.accessoryType = .Checkmark
-            recruiters[indexPath.row] += ["1"]
+            recruiters[indexPath.row][6] = "1"
         }
     }
     
     func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
         if editingStyle == UITableViewCellEditingStyle.Delete {
+            print(recruiters)
             recruiters.removeAtIndex(indexPath.row)
+            print(recruiters)
             RecruiterTV.deleteRowsAtIndexPaths([indexPath], withRowAnimation: UITableViewRowAnimation.Automatic)
         }
     }
@@ -133,14 +143,36 @@ class RecruiterViewController: UIViewController, UITableViewDelegate, UITableVie
     
     
     @IBAction func validTapped(sender: AnyObject) {
+        print(recruiters)
+        do {
+            let post:NSString = "compagny=\(compagny)&db=contacts"
+            let url : NSURL = NSURL(string:"http://192.168.22.149/~louischeminant/MyJobsPortalAPI/jsondelete.php")!
+            let postData:NSData = post.dataUsingEncoding(NSUTF8StringEncoding)!
+            let postLength:NSString = String(postData.length)
+            let session = NSURLSession.sharedSession()
+            
+            let request:NSMutableURLRequest = NSMutableURLRequest(URL: url)
+            request.HTTPMethod = "POST"
+            request.HTTPBody = postData
+            request.setValue(postLength as String, forHTTPHeaderField: "Content-Length")
+            request.setValue("application/x-www-form-urlencoded", forHTTPHeaderField: "Content-Type")
+            request.setValue("application/json", forHTTPHeaderField: "Accept")
+            let task = session.dataTaskWithRequest(request, completionHandler: {data, response, error -> Void in
+                self.pushContacts()
+            })
+            task.resume()
+        }
+    }
+
+    func pushContacts() {
         var infoArray : [String] = []
-
-        for (var i = 0; i < recruiters.count; i++) {
-            infoArray  = recruiters[i]
-
+        
+        for (var i = 0; i < self.recruiters.count; i++) {
+            infoArray  = self.recruiters[i]
+            
             do {
                 let post:NSString = "compagny=\(infoArray[0])&lastname=\(infoArray[1])&name=\(infoArray[2])&position=\(infoArray[3])&mail=\(infoArray[4])&phone=\(infoArray[5])&selected=\(infoArray[6])"
-                let url : NSURL = NSURL(string:"http://localhost/~louischeminant/MyJobsPortalAPI/jsonrecruiter.php")!
+                let url : NSURL = NSURL(string:"http://192.168.22.149/~louischeminant/MyJobsPortalAPI/jsonrecruiter.php")!
                 let postData:NSData = post.dataUsingEncoding(NSUTF8StringEncoding)!
                 let postLength:NSString = String(postData.length)
                 let session = NSURLSession.sharedSession()
@@ -165,12 +197,22 @@ class RecruiterViewController: UIViewController, UITableViewDelegate, UITableVie
                                         UIAlertAction in
                                         let storyboard = UIStoryboard(name: "Main", bundle: nil)
                                         let mainViewController = storyboard.instantiateViewControllerWithIdentifier("MainCompagny") as? SWRevealViewController
-                                        self.presentViewController(mainViewController!, animated: true, completion: {})
+                                        NSOperationQueue.mainQueue().addOperationWithBlock {
+                                            self.presentViewController(mainViewController!, animated: true, completion: {})
+                                        }
                                     }
                                     alert.addAction(okAction)
                                     NSOperationQueue.mainQueue().addOperationWithBlock {
                                         self.presentViewController(alert, animated: true){}
                                     }
+                                } else {
+                                    var error_msg : NSString = ""
+                                    if jsonData["error_message"] as? NSString != nil {
+                                        error_msg = jsonData["error_message"] as! NSString
+                                    } else {
+                                        error_msg = "Unknown Error"
+                                    }
+                                    self.errorAlert(self.titleError as String, message: error_msg as String)
                                 }
                             } catch {
                                 print(error)
@@ -186,7 +228,7 @@ class RecruiterViewController: UIViewController, UITableViewDelegate, UITableVie
             }
         }
     }
-    
+
     func errorAlert(title : String, message : String) {
         let alert = UIAlertController(title: title, message:message as String, preferredStyle: .Alert)
         alert.addAction(UIAlertAction(title: "OK", style: .Default) { _ in })

@@ -21,6 +21,8 @@ class TableViewController: UITableViewController, UITextViewDelegate {
     @IBOutlet weak var txtMission: UITextView!
     @IBOutlet weak var txtLevel: UITextField!
     
+    @IBOutlet weak var menuBtn: UIBarButtonItem!
+    
     var name_compagny: String = ""
     var type: String = ""
     var offer: String = ""
@@ -32,7 +34,6 @@ class TableViewController: UITableViewController, UITextViewDelegate {
     var longitude: Double = 0.0
     var lookupAddressResults: Dictionary<NSObject, AnyObject>!
     
-    
     var datePickerHidden = false
     var datePickerHidden2 = false
     var datePickerHidden3 = false
@@ -43,6 +44,10 @@ class TableViewController: UITableViewController, UITextViewDelegate {
         datePickerHidden2 = !datePickerHidden2
         datePickerHidden3 = !datePickerHidden3
         datePickerChanged()
+        
+        menuBtn.target = revealViewController()
+        menuBtn.action = "revealToggle:"
+        view.addGestureRecognizer(self.revealViewController().panGestureRecognizer())
         
         txtMission.text = "Description de l'offre"
         txtMission.textColor = UIColor.lightGrayColor()
@@ -226,7 +231,7 @@ class TableViewController: UITableViewController, UITextViewDelegate {
         let titleError : NSString = "La connexion a échoué !"
         do {
             let post:NSString = "compagny=\(name_compagny)&type=\(type)&offer=\(offer)&missions=\(missions)&level=\(level)&address=\(address)&latitude=\(latitude)&longitude=\(longitude)"
-            let url : NSURL = NSURL(string:"http://localhost/~louischeminant/MyJobsPortalAPI/jsonoffer.php")!
+            let url : NSURL = NSURL(string:"http://192.168.22.149/~louischeminant/MyJobsPortalAPI/jsonoffer.php")!
             let postData:NSData = post.dataUsingEncoding(NSUTF8StringEncoding)!
             print(postData)
             let postLength:NSString = String(postData.length)

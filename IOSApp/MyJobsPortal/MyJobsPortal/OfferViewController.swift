@@ -26,7 +26,7 @@ class OfferViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let url : String = "http://localhost/~louischeminant/MyJobsPortalAPI/Images/apercu.php?id=11"
+        let url : String = "http://192.168.22.149/~louischeminant/MyJobsPortalAPI/Images/apercu.php?id=11"
         let data : NSData = NSData(contentsOfURL: NSURL(string: url)!)!
         
 
