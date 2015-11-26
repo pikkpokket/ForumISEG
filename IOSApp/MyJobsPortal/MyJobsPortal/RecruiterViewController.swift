@@ -52,7 +52,6 @@ class RecruiterViewController: UIViewController, UITableViewDelegate, UITableVie
                         do {
                             let jsonData = try NSJSONSerialization.JSONObjectWithData(data!, options:NSJSONReadingOptions.MutableContainers ) as! NSMutableArray
                             for (var i = 0; i < jsonData.count; i++) {
-                                print(jsonData)
                                 self.recruiters.append(jsonData[i] as! [String])
                             }
                         } catch {
@@ -69,10 +68,6 @@ class RecruiterViewController: UIViewController, UITableViewDelegate, UITableVie
         }
     
         NSOperationQueue.mainQueue().addOperationWithBlock {
-
-            self.RecruiterTV.reloadData()
-            }
-            
             self.RecruiterTV.delegate = self
             self.RecruiterTV.dataSource = self
             
@@ -82,6 +77,8 @@ class RecruiterViewController: UIViewController, UITableViewDelegate, UITableVie
                 self.menuBtn.action = "revealToggle:"
                 self.view.addGestureRecognizer(self.revealViewController().panGestureRecognizer())
 
+        }
+        self.RecruiterTV.reloadData()
         }
     }
     
