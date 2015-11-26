@@ -63,7 +63,7 @@ class MainViewController: UIViewController, UICollectionViewDelegate, UICollecti
         
         do {
             let post:NSString = "login=\(login)&db=users"
-            let url : NSURL = NSURL(string:"http://10.10.253.107/~louischeminant/MyJobsPortalAPI/jsonconnect.php")!
+            let url : NSURL = NSURL(string:"http://localhost/~louischeminant/MyJobsPortalAPI/jsonconnect.php")!
             let postData:NSData = post.dataUsingEncoding(NSUTF8StringEncoding)!
             let postLength:NSString = String(postData.length)
             let session = NSURLSession.sharedSession()
@@ -101,7 +101,7 @@ class MainViewController: UIViewController, UICollectionViewDelegate, UICollecti
     func entrepriseDisplay() {
         do {
             let session = NSURLSession.sharedSession()
-            let url : NSURL = NSURL(string:"http://10.10.253.107/~louischeminant/MyJobsPortalAPI/jsonentreprise.php")!
+            let url : NSURL = NSURL(string:"http://localhost/~louischeminant/MyJobsPortalAPI/jsonentreprise.php")!
             let task = session.dataTaskWithURL(url, completionHandler: {data, response, error -> Void in
                 let res : NSHTTPURLResponse = response as! NSHTTPURLResponse
                 let responseData:NSString  = NSString(data:data!, encoding:NSUTF8StringEncoding)!
@@ -162,7 +162,7 @@ class MainViewController: UIViewController, UICollectionViewDelegate, UICollecti
         
         if let data : NSMutableArray = NSUserDefaults.standardUserDefaults().valueForKey("logoData") as? NSMutableArray {
             print(data)
-            let url : String = "http://10.10.253.107/~louischeminant/MyJobsPortalAPI/Images/apercu.php?img_nom=\(data.objectAtIndex(indexPath.row))"
+            let url : String = "http://localhost/~louischeminant/MyJobsPortalAPI/Images/apercu.php?img_nom=\(data.objectAtIndex(indexPath.row))"
             let data2 : NSData = NSData(contentsOfURL: NSURL(string: url)!)!
         
             cell.logoImage.image = UIImage(data: data2)

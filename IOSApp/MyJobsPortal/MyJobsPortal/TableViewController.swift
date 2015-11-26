@@ -226,7 +226,7 @@ class TableViewController: UITableViewController, UITextViewDelegate {
         let titleError : NSString = "La connexion a échoué !"
         do {
             let post:NSString = "compagny=\(name_compagny)&type=\(type)&offer=\(offer)&missions=\(missions)&level=\(level)&address=\(address)&latitude=\(latitude)&longitude=\(longitude)"
-            let url : NSURL = NSURL(string:"http://10.10.253.107/~louischeminant/MyJobsPortalAPI/jsonoffer.php")!
+            let url : NSURL = NSURL(string:"http://localhost/~louischeminant/MyJobsPortalAPI/jsonoffer.php")!
             let postData:NSData = post.dataUsingEncoding(NSUTF8StringEncoding)!
             print(postData)
             let postLength:NSString = String(postData.length)
@@ -259,8 +259,6 @@ class TableViewController: UITableViewController, UITextViewDelegate {
                                 alert.addAction(okAction)
                                 NSOperationQueue.mainQueue().addOperationWithBlock {
                                     self.presentViewController(alert, animated: true){}
-                                }
-                                NSOperationQueue.mainQueue().addOperationWithBlock {
                                 }
                             } else {
                                 self.errorAlert(titleError as String, message: "Une erreur s'est produite")

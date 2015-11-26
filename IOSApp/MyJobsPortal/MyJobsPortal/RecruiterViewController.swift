@@ -15,18 +15,20 @@ class RecruiterViewController: UIViewController, UITableViewDelegate, UITableVie
     @IBOutlet weak var RecruiterTV: UITableView!
     
     var recruiters = [[String]]()
-    var validRecruiters = [[String]]()
     var newRecruiter : [String] = []
     var recruiter = String()
     var compagny = String()
+    var arrayTest = NSMutableArray()
+    
+    let titleError : NSString = "La connexion a échoué !"
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let titleError : NSString = "La connexion a échoué !"
         let prefs:NSUserDefaults = NSUserDefaults.standardUserDefaults()
         if let data : NSArray = prefs.valueForKey("data") as? NSArray {
             compagny = data[1] as! String
+            print(compagny)
         }
         
         do {
@@ -49,31 +51,25 @@ class RecruiterViewController: UIViewController, UITableViewDelegate, UITableVie
                     if (res.statusCode >= 200 && res.statusCode < 300) {
                         do {
                             let jsonData = try NSJSONSerialization.JSONObjectWithData(data!, options:NSJSONReadingOptions.MutableContainers ) as! NSMutableArray
-                            print (jsonData)
                             for (var i = 0; i < jsonData.count; i++) {
-                                self.recruiter = jsonData[i] as! String
+                                print(jsonData)
+                                self.recruiters.append(jsonData[i] as! [String])
                             }
                         } catch {
                             print(error)
                         }
                     } else {
-                        self.errorAlert(titleError as String, message: "Connection Failed")
+                        self.errorAlert(self.titleError as String, message: "Connection Failed")
                     }
                 } else {
-                    self.errorAlert(titleError as String, message: "Échec de connexion")
+                    self.errorAlert(self.titleError as String, message: "Échec de connexion")
                 }
             })
             task.resume()
         }
-        
+    
         NSOperationQueue.mainQueue().addOperationWithBlock {
-            
-            let fullNameArr = self.recruiter.characters.split{$0 == "\n"}.map(String.init)
-            
-            for (var i = 0; i<fullNameArr.count; i++) {
-                let toto = fullNameArr[i].characters.split{$0 == ","}.map(String.init)
-                self.recruiters.append(toto)
-            }
+
             self.RecruiterTV.reloadData()
             }
             
@@ -115,7 +111,7 @@ class RecruiterViewController: UIViewController, UITableViewDelegate, UITableVie
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("recruiterCell", forIndexPath: indexPath)
         
-        cell.textLabel!.text = "\(recruiters[indexPath.row][0]) \(recruiters[indexPath.row][1])"
+        cell.textLabel!.text = "\(recruiters[indexPath.row][1]) \(recruiters[indexPath.row][2])"
         
         return cell
     }
@@ -123,37 +119,75 @@ class RecruiterViewController: UIViewController, UITableViewDelegate, UITableVie
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         if tableView.cellForRowAtIndexPath(indexPath)?.accessoryType == .Checkmark {
             tableView.cellForRowAtIndexPath(indexPath)?.accessoryType = .None
-            recruiters[indexPath.row].removeLast()
-            validRecruiters.append(recruiters[indexPath.row])
+            recruiters[indexPath.row] += ["0"]
         } else {
             tableView.cellForRowAtIndexPath(indexPath)?.accessoryType = .Checkmark
             recruiters[indexPath.row] += ["1"]
-            validRecruiters.append(recruiters[indexPath.row])
         }
     }
     
-//    func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
-//        if editingStyle == UITableViewCellEditingStyle.Delete {
-//            recruiters.removeAtIndex(indexPath.row)
-//            RecruiterTV.deleteRowsAtIndexPaths([indexPath], withRowAnimation: UITableViewRowAnimation.Automatic)
-//        }
-//    }
+    func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
+        if editingStyle == UITableViewCellEditingStyle.Delete {
+            recruiters.removeAtIndex(indexPath.row)
+            RecruiterTV.deleteRowsAtIndexPaths([indexPath], withRowAnimation: UITableViewRowAnimation.Automatic)
+        }
+    }
     
     
     
     @IBAction func validTapped(sender: AnyObject) {
-        var finalInfo : String = ""
-        var tmpArray : [String] = []
-        
-        for (var i = 0; i < validRecruiters.count; i++) {
-            finalInfo = validRecruiters[i].joinWithSeparator(", ")
-            tmpArray.append(finalInfo)
+        var infoArray : [String] = []
+
+        for (var i = 0; i < recruiters.count; i++) {
+            infoArray  = recruiters[i]
+
+            do {
+                let post:NSString = "compagny=\(infoArray[0])&lastname=\(infoArray[1])&name=\(infoArray[2])&position=\(infoArray[3])&mail=\(infoArray[4])&phone=\(infoArray[5])&selected=\(infoArray[6])"
+                let url : NSURL = NSURL(string:"http://localhost/~louischeminant/MyJobsPortalAPI/jsonrecruiter.php")!
+                let postData:NSData = post.dataUsingEncoding(NSUTF8StringEncoding)!
+                let postLength:NSString = String(postData.length)
+                let session = NSURLSession.sharedSession()
+                
+                let request:NSMutableURLRequest = NSMutableURLRequest(URL: url)
+                request.HTTPMethod = "POST"
+                request.HTTPBody = postData
+                request.setValue(postLength as String, forHTTPHeaderField: "Content-Length")
+                request.setValue("application/x-www-form-urlencoded", forHTTPHeaderField: "Content-Type")
+                request.setValue("application/json", forHTTPHeaderField: "Accept")
+                
+                let task = session.dataTaskWithRequest(request, completionHandler: {data, response, error -> Void in
+                    if (data != nil) {
+                        let res : NSHTTPURLResponse = response as! NSHTTPURLResponse
+                        if (res.statusCode >= 200 && res.statusCode < 300) {
+                            do {
+                                let jsonData = try NSJSONSerialization.JSONObjectWithData(data!, options:NSJSONReadingOptions.MutableContainers ) as! NSDictionary
+                                let success:NSInteger = jsonData.valueForKey("success") as! NSInteger
+                                if (success == 1) {
+                                    let alert = UIAlertController(title: "Enregistrer", message:"L'offre a bien été créée" as String, preferredStyle: .Alert)
+                                    let okAction = UIAlertAction(title: "OK", style: UIAlertActionStyle.Default) {
+                                        UIAlertAction in
+                                        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+                                        let mainViewController = storyboard.instantiateViewControllerWithIdentifier("MainCompagny") as? SWRevealViewController
+                                        self.presentViewController(mainViewController!, animated: true, completion: {})
+                                    }
+                                    alert.addAction(okAction)
+                                    NSOperationQueue.mainQueue().addOperationWithBlock {
+                                        self.presentViewController(alert, animated: true){}
+                                    }
+                                }
+                            } catch {
+                                print(error)
+                            }
+                        } else {
+                            self.errorAlert(self.titleError as String, message: "Connection Failed")
+                        }
+                    } else {
+                        self.errorAlert(self.titleError as String, message: "Échec de connexion")
+                    }
+                })
+                task.resume()
+            }
         }
-        for (var i = 0; i < tmpArray.count; i++) {
-            finalInfo = tmpArray.joinWithSeparator("\n")
-        }
-        let prefs:NSUserDefaults = NSUserDefaults.standardUserDefaults()
-        prefs.setObject(finalInfo, forKey: "Contacts")
     }
     
     func errorAlert(title : String, message : String) {

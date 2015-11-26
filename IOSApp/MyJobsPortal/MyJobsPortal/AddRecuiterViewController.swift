@@ -17,6 +17,7 @@ class AddRecuiterViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var txtPhone: UITextField!
 
     var info : [String] = []
+    var compagny = String()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -33,12 +34,17 @@ class AddRecuiterViewController: UIViewController, UITextFieldDelegate {
 
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "doneSegue" {
-            //info = "\(txtName.text!) \(txtLastName.text!) - \(txtPosition.text!) - \(txtPhone.text!) - \(txtMail.text!)"
+            let prefs:NSUserDefaults = NSUserDefaults.standardUserDefaults()
+            if let data : NSArray = prefs.valueForKey("data") as? NSArray {
+                compagny = data[1] as! String
+            }
+            info.append(compagny)
             info.append(txtName.text!)
             info.append(txtLastName.text!)
             info.append(txtPosition.text!)
             info.append(txtMail.text!)
             info.append(txtPhone.text!)
+            info.append("0")
         }
     }
 

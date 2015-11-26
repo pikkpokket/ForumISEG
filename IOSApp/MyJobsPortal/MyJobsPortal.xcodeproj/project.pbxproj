@@ -20,6 +20,7 @@
 		957DA40E1BFF863C0078022D /* RecruiterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 957DA40D1BFF863C0078022D /* RecruiterViewController.swift */; };
 		957DA4181BFFA3250078022D /* AddRecuiterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 957DA4171BFFA3250078022D /* AddRecuiterViewController.swift */; };
 		959B78DA1BF55ED900E23D28 /* SWRevealViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 959B78D91BF55ED900E23D28 /* SWRevealViewController.m */; };
+		95B573B31C06EA42004C73C5 /* Recruiters.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95B573B21C06EA42004C73C5 /* Recruiters.swift */; };
 		95C44D5F1BF3236D0015AC58 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95C44D5E1BF3236D0015AC58 /* AppDelegate.swift */; };
 		95C44D641BF3236D0015AC58 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 95C44D621BF3236D0015AC58 /* Main.storyboard */; };
 		95C44D661BF3236D0015AC58 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 95C44D651BF3236D0015AC58 /* Assets.xcassets */; };
@@ -46,6 +47,7 @@
 		959B78D71BF55ED900E23D28 /* MyJobsPortal-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "MyJobsPortal-Bridging-Header.h"; sourceTree = "<group>"; };
 		959B78D81BF55ED900E23D28 /* SWRevealViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SWRevealViewController.h; sourceTree = "<group>"; };
 		959B78D91BF55ED900E23D28 /* SWRevealViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SWRevealViewController.m; sourceTree = "<group>"; };
+		95B573B21C06EA42004C73C5 /* Recruiters.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Recruiters.swift; sourceTree = "<group>"; };
 		95C44D5B1BF3236D0015AC58 /* MyJobsPortal.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MyJobsPortal.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		95C44D5E1BF3236D0015AC58 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		95C44D631BF3236D0015AC58 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -88,6 +90,7 @@
 				954A65661C01259D007E4736 /* TableViewController.swift */,
 				957DA40D1BFF863C0078022D /* RecruiterViewController.swift */,
 				957DA4171BFFA3250078022D /* AddRecuiterViewController.swift */,
+				95B573B21C06EA42004C73C5 /* Recruiters.swift */,
 			);
 			name = Compagny;
 			sourceTree = "<group>";
@@ -270,6 +273,7 @@
 				954BC9BA1BF7CB4B00D5A991 /* Entreprise.swift in Sources */,
 				954A65671C01259D007E4736 /* TableViewController.swift in Sources */,
 				959B78DA1BF55ED900E23D28 /* SWRevealViewController.m in Sources */,
+				95B573B31C06EA42004C73C5 /* Recruiters.swift in Sources */,
 				954BC9B61BF78DDB00D5A991 /* OfferViewController.swift in Sources */,
 				957DA4051BFF06400078022D /* FirstViewController.swift in Sources */,
 				957DA4011BFEA1530078022D /* MainCompagnyViewController.swift in Sources */,
