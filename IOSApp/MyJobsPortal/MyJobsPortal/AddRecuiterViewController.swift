@@ -18,6 +18,7 @@ class AddRecuiterViewController: UIViewController, UITextFieldDelegate {
 
     var info : [String] = []
     var compagny = String()
+    var selectedRecruiter : Recruiters = Recruiters()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -26,6 +27,11 @@ class AddRecuiterViewController: UIViewController, UITextFieldDelegate {
         txtMail.delegate = self
         txtPosition.delegate = self
         txtPhone.delegate = self
+        txtLastName.text = selectedRecruiter.lastname
+        txtName.text = selectedRecruiter.name
+        txtMail.text = selectedRecruiter.mail
+        txtPhone.text = selectedRecruiter.phone
+        txtPosition.text = selectedRecruiter.position
     }
 
     override func didReceiveMemoryWarning() {
@@ -38,13 +44,14 @@ class AddRecuiterViewController: UIViewController, UITextFieldDelegate {
             if let data : NSArray = prefs.valueForKey("data") as? NSArray {
                 compagny = data[1] as! String
             }
-            info.append(compagny)
-            info.append(txtName.text!)
-            info.append(txtLastName.text!)
-            info.append(txtPosition.text!)
-            info.append(txtMail.text!)
-            info.append(txtPhone.text!)
-            info.append("0")
+            
+            selectedRecruiter.name = txtName.text!
+            selectedRecruiter.compagny = compagny
+            selectedRecruiter.lastname = txtLastName.text!
+            selectedRecruiter.position = txtPosition.text!
+            selectedRecruiter.phone = txtPhone.text!
+            selectedRecruiter.mail = txtMail.text!
+            selectedRecruiter.selected = selectedRecruiter.selected
         }
     }
 

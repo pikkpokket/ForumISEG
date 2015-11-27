@@ -14,11 +14,13 @@ class RecruiterViewController: UIViewController, UITableViewDelegate, UITableVie
     @IBOutlet weak var addBtn: UIButton!
     @IBOutlet weak var RecruiterTV: UITableView!
     
-    var recruiters = [[String]]()
-    var newRecruiter : [String] = []
-    var recruiter = String()
+//    var recruiters = [[String]]()
+//    var newsRecruiter : [String] = []
+//    var recruiter = String()
     var compagny = String()
-    var arrayTest = NSMutableArray()
+    var allRecruiter = NSMutableArray()
+    var selectedRecruiter : Recruiters = Recruiters()
+    var newRecruiter : Recruiters = Recruiters()
     
     let titleError : NSString = "La connexion a échoué !"
     
@@ -28,12 +30,11 @@ class RecruiterViewController: UIViewController, UITableViewDelegate, UITableVie
         let prefs:NSUserDefaults = NSUserDefaults.standardUserDefaults()
         if let data : NSArray = prefs.valueForKey("data") as? NSArray {
             compagny = data[1] as! String
-            print(compagny)
         }
         
         do {
             let post:NSString = "compagny=\(compagny)"
-            let url : NSURL = NSURL(string:"http://192.168.22.149/~louischeminant/MyJobsPortalAPI/jsoncontact.php")!
+            let url : NSURL = NSURL(string:"http://localhost/~louischeminant/MyJobsPortalAPI/jsoncontact.php")!
             let postData:NSData = post.dataUsingEncoding(NSUTF8StringEncoding)!
             let postLength:NSString = String(postData.length)
             let session = NSURLSession.sharedSession()
@@ -48,16 +49,28 @@ class RecruiterViewController: UIViewController, UITableViewDelegate, UITableVie
             let task = session.dataTaskWithRequest(request, completionHandler: {data, response, error -> Void in
                 if (data != nil) {
                     let res : NSHTTPURLResponse = response as! NSHTTPURLResponse
-                    let responseData:NSString  = NSString(data:data!, encoding:NSUTF8StringEncoding)!
-                    NSLog("Response ==> %@", responseData);
                     if (res.statusCode >= 200 && res.statusCode < 300) {
                         do {
                             let jsonData = try NSJSONSerialization.JSONObjectWithData(data!, options:NSJSONReadingOptions.MutableContainers ) as! NSMutableArray
                             for (var i = 0; i < jsonData.count; i++) {
-                                self.recruiters.append(jsonData[i] as! [String])
-                                print(jsonData[i] as! [String])
+                                let jsonElement : NSDictionary = jsonData[i] as! NSDictionary
+                                self.newRecruiter = Recruiters()
+                                
+                                self.newRecruiter.compagny = jsonElement["compagny"] as! String
+                                self.newRecruiter.lastname = jsonElement["lastname"] as! String
+                                self.newRecruiter.name = jsonElement["name"] as! String
+                                self.newRecruiter.position = jsonElement["position"] as! String
+                                self.newRecruiter.mail = jsonElement["mail"] as! String
+                                self.newRecruiter.phone = jsonElement["phone"] as! String
+                                self.newRecruiter.selected = jsonElement["selected"] as! String
+
+                                self.allRecruiter.addObject(self.newRecruiter)
+                            }
+                            for var i = 0; i < self.allRecruiter.count; i++ {
+                                self.selectedRecruiter = self.allRecruiter.objectAtIndex(i) as! Recruiters
                             }
                             self.RecruiterTV.reloadData()
+                            self.RecruiterTV.reloadInputViews()
                         } catch {
                             print(error)
                         }
@@ -70,26 +83,27 @@ class RecruiterViewController: UIViewController, UITableViewDelegate, UITableVie
             })
             task.resume()
         }
-    
         NSOperationQueue.mainQueue().addOperationWithBlock {
             self.RecruiterTV.delegate = self
             self.RecruiterTV.dataSource = self
-            
-            if self.revealViewController() != nil {
-                self.revealViewController().rightViewRevealWidth = 230
-                self.menuBtn.target = self.revealViewController()
-                self.menuBtn.action = "revealToggle:"
-                self.view.addGestureRecognizer(self.revealViewController().panGestureRecognizer())
 
+        if self.revealViewController() != nil {
+            self.revealViewController().rightViewRevealWidth = 230
+            self.menuBtn.target = self.revealViewController()
+            self.menuBtn.action = "revealToggle:"
+            self.view.addGestureRecognizer(self.revealViewController().panGestureRecognizer())
         }
-        self.RecruiterTV.reloadData()
+            self.RecruiterTV.reloadData()
         }
     }
     
     @IBAction func done(segue: UIStoryboardSegue) {
         let addRecruiterVC = segue.sourceViewController as! AddRecuiterViewController
-        newRecruiter = addRecruiterVC.info
-        recruiters.append(newRecruiter)
+        newRecruiter = addRecruiterVC.selectedRecruiter
+
+        if !(allRecruiter.containsObject(newRecruiter)) {
+            allRecruiter.addObject(newRecruiter)
+        }
         RecruiterTV.reloadData()
     }
     
@@ -106,47 +120,71 @@ class RecruiterViewController: UIViewController, UITableViewDelegate, UITableVie
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-                print(recruiters.count)
-        return recruiters.count
+        return allRecruiter.count
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("recruiterCell", forIndexPath: indexPath)
-        
-        cell.textLabel!.text = "\(recruiters[indexPath.row][1]) \(recruiters[indexPath.row][2])"
-        if (recruiters[indexPath.row][6] == "1") {
-            cell.accessoryType = .Checkmark;
+        selectedRecruiter = allRecruiter.objectAtIndex(indexPath.row) as! Recruiters
+        cell.textLabel!.text =  "\(selectedRecruiter.name) \(selectedRecruiter.lastname)"
+        let switchSelected : UISwitch = UISwitch(frame: CGRectMake(cell.frame.width-90, cell.frame.height/2-31/2, 49, 31))
+        switchSelected.addTarget(self, action: "switchValueDidChange:", forControlEvents: .ValueChanged);
+        switchSelected.restorationIdentifier = "\(indexPath.row)"
+        if selectedRecruiter.selected == "1" {
+            switchSelected.on = true
         }
+        
+        for rmvSeg in cell.contentView.subviews {
+            if rmvSeg.isKindOfClass(UISwitch) {
+                rmvSeg.removeFromSuperview()
+            }
+        }
+        
+        cell.contentView.addSubview(switchSelected)
         
         return cell
     }
     
-    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        if tableView.cellForRowAtIndexPath(indexPath)?.accessoryType == .Checkmark {
-            tableView.cellForRowAtIndexPath(indexPath)?.accessoryType = .None
-            recruiters[indexPath.row][6] = "0"
-        } else {
-            tableView.cellForRowAtIndexPath(indexPath)?.accessoryType = .Checkmark
-            recruiters[indexPath.row][6] = "1"
+    func switchValueDidChange(sender:UISwitch!)
+    {
+        let id:String = sender.restorationIdentifier!
+        selectedRecruiter = allRecruiter.objectAtIndex(Int(id)!) as! Recruiters
+        if (sender.on == true){
+            selectedRecruiter.selected = "1"
         }
+        else{
+            selectedRecruiter.selected = "0"
+        }
+    }
+    
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        selectedRecruiter = allRecruiter.objectAtIndex(indexPath.row) as! Recruiters
+        self.performSegueWithIdentifier("AddRecruiter", sender: self)
     }
     
     func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
         if editingStyle == UITableViewCellEditingStyle.Delete {
-            print(recruiters)
-            recruiters.removeAtIndex(indexPath.row)
-            print(recruiters)
+            allRecruiter.removeObjectAtIndex(indexPath.row)
             RecruiterTV.deleteRowsAtIndexPaths([indexPath], withRowAnimation: UITableViewRowAnimation.Automatic)
         }
     }
     
-    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if (segue.identifier == "AddRecruiter") {
+            let nav = segue.destinationViewController as! UINavigationController
+            let detailVC : AddRecuiterViewController = nav.topViewController as! AddRecuiterViewController
+            detailVC.selectedRecruiter = selectedRecruiter
+        }
+    }
     
     @IBAction func validTapped(sender: AnyObject) {
-        print(recruiters)
+//        print(recruiters)
+        selectedRecruiter = allRecruiter.objectAtIndex(0) as! Recruiters
+        
+        print(selectedRecruiter.name)
         do {
             let post:NSString = "compagny=\(compagny)&db=contacts"
-            let url : NSURL = NSURL(string:"http://192.168.22.149/~louischeminant/MyJobsPortalAPI/jsondelete.php")!
+            let url : NSURL = NSURL(string:"http://localhost/~louischeminant/MyJobsPortalAPI/jsondelete.php")!
             let postData:NSData = post.dataUsingEncoding(NSUTF8StringEncoding)!
             let postLength:NSString = String(postData.length)
             let session = NSURLSession.sharedSession()
@@ -165,14 +203,13 @@ class RecruiterViewController: UIViewController, UITableViewDelegate, UITableVie
     }
 
     func pushContacts() {
-        var infoArray : [String] = []
         
-        for (var i = 0; i < self.recruiters.count; i++) {
-            infoArray  = self.recruiters[i]
+        for (var i = 0; i < allRecruiter.count; i++) {
+            selectedRecruiter = allRecruiter.objectAtIndex(i) as! Recruiters
             
             do {
-                let post:NSString = "compagny=\(infoArray[0])&lastname=\(infoArray[1])&name=\(infoArray[2])&position=\(infoArray[3])&mail=\(infoArray[4])&phone=\(infoArray[5])&selected=\(infoArray[6])"
-                let url : NSURL = NSURL(string:"http://192.168.22.149/~louischeminant/MyJobsPortalAPI/jsonrecruiter.php")!
+                let post:NSString = "compagny=\(selectedRecruiter.compagny)&lastname=\(selectedRecruiter.lastname)&name=\(selectedRecruiter.name)&position=\(selectedRecruiter.position)&mail=\(selectedRecruiter.mail)&phone=\(selectedRecruiter.phone)&selected=\(selectedRecruiter.selected)"
+                let url : NSURL = NSURL(string:"http://localhost/~louischeminant/MyJobsPortalAPI/jsonrecruiter.php")!
                 let postData:NSData = post.dataUsingEncoding(NSUTF8StringEncoding)!
                 let postLength:NSString = String(postData.length)
                 let session = NSURLSession.sharedSession()

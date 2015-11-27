@@ -109,7 +109,7 @@ class SignUpSocietyVC: UIViewController, UIImagePickerControllerDelegate, UINavi
         let titleError : NSString = "La connexion a échoué !"
         
         do {
-            let url : NSURL = NSURL(string:"http://192.168.22.149/~louischeminant/MyJobsPortalAPI/jsonsignup.php")!
+            let url : NSURL = NSURL(string:"http://localhost/~louischeminant/MyJobsPortalAPI/jsonsignup.php")!
             let boundary = generateBoundaryString()
             let param = [
                 "name"          : name,
