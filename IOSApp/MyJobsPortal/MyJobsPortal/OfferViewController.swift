@@ -21,36 +21,43 @@ class OfferViewController: UIViewController {
     @IBOutlet weak var lblType: UILabel!
     @IBOutlet weak var map: MKMapView!
     
-    var selectedLocation : Entreprise = Entreprise()
+    var selectedEntreprise : Entreprise = Entreprise()
+    var selectedContact : [Contact] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let url : String = "http://192.168.22.149/~louischeminant/MyJobsPortalAPI/Images/apercu.php?id=11"
+        let url : String = "http://localhost/~louischeminant/MyJobsPortalAPI/Images/apercu.php?img_nom=\(selectedEntreprise.name)"
         let data : NSData = NSData(contentsOfURL: NSURL(string: url)!)!
         
 
         
         logoImageView.image = UIImage(data: data)
-        lblOffer.text = self.selectedLocation.offer
-        lblResume.text = self.selectedLocation.resume
-        lblMissions.text = self.selectedLocation.missions
-        lblLevel.text = self.selectedLocation.level
-        lblContact.text = self.selectedLocation.contact
-        lblAddress.text = self.selectedLocation.address
-        lblType.text = self.selectedLocation.type
+        lblOffer.text = self.selectedEntreprise.offer
+        lblResume.text = self.selectedEntreprise.resume
+        lblMissions.text = self.selectedEntreprise.missions
+        lblLevel.text = self.selectedEntreprise.level
+        lblAddress.text = self.selectedEntreprise.address
+        lblType.text = self.selectedEntreprise.type
+        lblResume.text = self.selectedEntreprise.description_compagny
+        var arrayContact : [String] = [String]()
+        var displayContact : String = String()
+        for var i=0; i<selectedContact.count; i++ {
+            arrayContact.append("\(self.selectedContact[i].name) \(self.selectedContact[i].lastName) - \(self.selectedContact[i].position)")
+        }
+        displayContact = arrayContact.joinWithSeparator("\n")
+        self.lblContact.text = displayContact
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
     
     override func viewDidAppear(animated: Bool) {
         var poiCoodinates : CLLocationCoordinate2D = CLLocationCoordinate2D()
-        if (self.selectedLocation.latitude != "" || self.selectedLocation.longitude != "") {
-            poiCoodinates.latitude = Double(self.selectedLocation.latitude)!
-            poiCoodinates.longitude = Double(self.selectedLocation.longitude)!
+        if (self.selectedEntreprise.latitude != "" || self.selectedEntreprise.longitude != "") {
+            poiCoodinates.latitude = Double(self.selectedEntreprise.latitude)!
+            poiCoodinates.longitude = Double(self.selectedEntreprise.longitude)!
         }
         
         let viewRegion : MKCoordinateRegion = MKCoordinateRegionMakeWithDistance(poiCoodinates, 750, 750)

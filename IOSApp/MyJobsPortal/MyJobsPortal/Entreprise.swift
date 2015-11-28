@@ -14,10 +14,12 @@ class Entreprise: NSObject {
     var missions : String = ""
     var resume : String = ""
     var level : String = ""
-    var contact : String = ""
     var address : String = ""
     var latitude : String = ""
     var longitude : String = ""
+    var description_compagny : String = ""
+    
+    
     var start : String = ""
     var end : String = ""
     var type : String = ""

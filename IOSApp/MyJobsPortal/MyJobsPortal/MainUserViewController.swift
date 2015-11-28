@@ -16,13 +16,18 @@ class MainViewController: UIViewController, UICollectionViewDelegate, UICollecti
     
     private let reuseIdentifier = "logoCell"
     let entreprise : NSMutableArray = NSMutableArray()
-    var selectedLocation : Entreprise = Entreprise()
+    let user : NSMutableArray = NSMutableArray()
+    let contact : NSMutableArray = NSMutableArray()
+    var selectedEntreprise : Entreprise = Entreprise()
+    var selectedUser : User = User()
+    var selectedContact : [Contact] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        entrepriseDisplay()
-        connection()
+        loadEntreprise()
+        loadUser()
+        loadContact()
 
         collectionView.delegate = self
         collectionView.dataSource = self
@@ -42,28 +47,14 @@ class MainViewController: UIViewController, UICollectionViewDelegate, UICollecti
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
-
-    override func viewDidAppear(animated: Bool) {
-        super.viewDidAppear(true)
-        
-        let prefs:NSUserDefaults = NSUserDefaults.standardUserDefaults()
-        let isLoggedIn:Int = prefs.integerForKey("ISLOGGEDINUSER") as Int
-        if (isLoggedIn == 1) {
-            if let data : NSArray = prefs.valueForKey("data") as? NSArray {
-                let name : String! = data[2] as! String
-                let lastname : String! = data[1] as! String
-                self.loginLabel.text = "Bienvenue \(name) \(lastname)"
-            }
-        }
-    }
     
-    func connection() {
+    func loadUser() {
         let login : String! = NSUserDefaults.standardUserDefaults().valueForKey("USERNAME") as? String
         let titleError : NSString = "La connexion a échoué !"
         
         do {
-            let post:NSString = "login=\(login)&db=users"
-            let url : NSURL = NSURL(string:"http://192.168.22.149/~louischeminant/MyJobsPortalAPI/jsonconnect.php")!
+            let post:NSString = "mail=\(login)&db=users"
+            let url : NSURL = NSURL(string:"http://localhost/~louischeminant/MyJobsPortalAPI/jsonuser.php")!
             let postData:NSData = post.dataUsingEncoding(NSUTF8StringEncoding)!
             let postLength:NSString = String(postData.length)
             let session = NSURLSession.sharedSession()
@@ -78,12 +69,30 @@ class MainViewController: UIViewController, UICollectionViewDelegate, UICollecti
             let task = session.dataTaskWithRequest(request, completionHandler: {data, response, error -> Void in
                 if (data != nil) {
                     let res : NSHTTPURLResponse = response as! NSHTTPURLResponse
+                    let responseData:NSString  = NSString(data:data!, encoding:NSUTF8StringEncoding)!
+                    NSLog("Response ==> %@", responseData);
                     if (res.statusCode >= 200 && res.statusCode < 300) {
                         do {
                             let jsonData = try NSJSONSerialization.JSONObjectWithData(data!, options:NSJSONReadingOptions.MutableContainers ) as! NSMutableArray
-                            NSUserDefaults.standardUserDefaults().setObject(jsonData, forKey: "data")
-                            NSUserDefaults.standardUserDefaults().setInteger(1, forKey: "ISLOGGEDIN")
-                            NSUserDefaults.standardUserDefaults().synchronize()
+                            for (var i = 0; i < jsonData.count; i++) {
+                                let jsonElement : NSDictionary = jsonData[i] as! NSDictionary
+                                let newUser : User = User()
+                                
+                                newUser.name = jsonElement["name"] as! String
+                                newUser.lastName = jsonElement["lastname"] as! String
+                                newUser.classe = jsonElement["class"] as! String
+                                newUser.mail = jsonElement["mail"] as! String
+                                newUser.password = jsonElement["password"] as! String
+                                newUser.phone = jsonElement["phone"] as! String
+                                
+                                self.user.addObject(newUser)
+                            }
+                            dispatch_async(dispatch_get_main_queue(), {
+                                self.selectedUser = self.user.objectAtIndex(0) as! User
+                                self.loginLabel.text = "Bienvenue \(self.selectedUser.name) \(self.selectedUser.lastName)"
+                                NSUserDefaults.standardUserDefaults().setInteger(1, forKey: "ISLOGGEDIN")
+                                NSUserDefaults.standardUserDefaults().synchronize()
+                            })
                         } catch {
                             print(error)
                         }
@@ -98,10 +107,10 @@ class MainViewController: UIViewController, UICollectionViewDelegate, UICollecti
         }
     }
     
-    func entrepriseDisplay() {
+    func loadContact() {
         do {
             let session = NSURLSession.sharedSession()
-            let url : NSURL = NSURL(string:"http://192.168.22.149/~louischeminant/MyJobsPortalAPI/jsonentreprise.php")!
+            let url : NSURL = NSURL(string:"http://localhost/~louischeminant/MyJobsPortalAPI/jsoncontact.php")!
             let task = session.dataTaskWithURL(url, completionHandler: {data, response, error -> Void in
                 let res : NSHTTPURLResponse = response as! NSHTTPURLResponse
                 let responseData:NSString  = NSString(data:data!, encoding:NSUTF8StringEncoding)!
@@ -109,8 +118,40 @@ class MainViewController: UIViewController, UICollectionViewDelegate, UICollecti
                 if (res.statusCode >= 200 && res.statusCode < 300) {
                     do {
                         let jsonData = try NSJSONSerialization.JSONObjectWithData(data!, options:NSJSONReadingOptions.MutableContainers ) as! NSMutableArray
-                        let logoArray : NSMutableArray = NSMutableArray()
-                        
+                        for (var i = 0; i < jsonData.count; i++) {
+                            let jsonElement : NSDictionary = jsonData[i] as! NSDictionary
+                            let newContact = Contact()
+                            
+                            newContact.compagny = jsonElement["compagny"] as! String
+                            newContact.name = jsonElement["name"] as! String
+                            newContact.lastName = jsonElement["lastname"] as! String
+                            newContact.mail = jsonElement["mail"] as! String
+                            newContact.position = jsonElement["position"] as! String
+                            newContact.phone = jsonElement["phone"] as! String
+                            newContact.selected = jsonElement["selected"] as! String
+                            
+                            self.contact.addObject(newContact)
+                        }
+                    } catch {
+                        self.errorAlert("Error" as String, message: "Échec de connexion")
+                    }
+                }
+            })
+            task.resume()
+        }
+    }
+    
+    func loadEntreprise() {
+        do {
+            let session = NSURLSession.sharedSession()
+            let url : NSURL = NSURL(string:"http://localhost/~louischeminant/MyJobsPortalAPI/jsonentreprise.php")!
+            let task = session.dataTaskWithURL(url, completionHandler: {data, response, error -> Void in
+                let res : NSHTTPURLResponse = response as! NSHTTPURLResponse
+                let responseData:NSString  = NSString(data:data!, encoding:NSUTF8StringEncoding)!
+                NSLog("Response ==> %@", responseData);
+                if (res.statusCode >= 200 && res.statusCode < 300) {
+                    do {
+                        let jsonData = try NSJSONSerialization.JSONObjectWithData(data!, options:NSJSONReadingOptions.MutableContainers ) as! NSMutableArray
                         for (var i = 0; i < jsonData.count; i++) {
                             let jsonElement : NSDictionary = jsonData[i] as! NSDictionary
                             let newEntreprise : Entreprise = Entreprise()
@@ -123,12 +164,10 @@ class MainViewController: UIViewController, UICollectionViewDelegate, UICollecti
                             newEntreprise.longitude = jsonElement["longitude"] as! String
                             newEntreprise.latitude = jsonElement["latitude"] as! String
                             newEntreprise.type = jsonElement["type"] as! String
-                            
-                            logoArray[i] = jsonElement["compagny"] as! String
-                            
+                            newEntreprise.description_compagny = jsonElement["description"] as! String
+
                             self.entreprise.addObject(newEntreprise)
                         }
-                        NSUserDefaults.standardUserDefaults().setObject(logoArray, forKey: "logoData")
                         dispatch_async(dispatch_get_main_queue(), {
                             self.collectionView.reloadData()
                         })
@@ -159,25 +198,30 @@ class MainViewController: UIViewController, UICollectionViewDelegate, UICollecti
     
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier(reuseIdentifier, forIndexPath: indexPath) as! CollectionViewCell
-        
-        if let data : NSMutableArray = NSUserDefaults.standardUserDefaults().valueForKey("logoData") as? NSMutableArray {
-            print(data)
-            let url : String = "http://192.168.22.149/~louischeminant/MyJobsPortalAPI/Images/apercu.php?img_nom=\(data.objectAtIndex(indexPath.row))"
-            let data2 : NSData = NSData(contentsOfURL: NSURL(string: url)!)!
-        
-            cell.logoImage.image = UIImage(data: data2)
-        }
+        selectedEntreprise = entreprise.objectAtIndex(indexPath.row) as! Entreprise
+        let url : String = "http://localhost/~louischeminant/MyJobsPortalAPI/Images/apercu.php?img_nom=\(selectedEntreprise.name)"
+        let data : NSData = NSData(contentsOfURL: NSURL(string: url)!)!
+        cell.logoImage.image = UIImage(data: data)
         return cell
     }
     
     func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
-        selectedLocation = entreprise.objectAtIndex(indexPath.row) as! Entreprise
+        selectedEntreprise = entreprise.objectAtIndex(indexPath.row) as! Entreprise
+        selectedContact.removeAll()
+        for var i=0; i < contact.count; i++ {
+            var tmpContact : Contact = Contact()
+            tmpContact = contact.objectAtIndex(i) as! Contact
+            if tmpContact.compagny == selectedEntreprise.name {
+                selectedContact.append(contact.objectAtIndex(i) as! Contact)
+            }
+        }
         self.performSegueWithIdentifier("offer", sender: self)
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         let detailVC : OfferViewController = segue.destinationViewController as! OfferViewController
-        detailVC.selectedLocation = selectedLocation
+        detailVC.selectedEntreprise = selectedEntreprise
+        detailVC.selectedContact = selectedContact
     }
 
 }

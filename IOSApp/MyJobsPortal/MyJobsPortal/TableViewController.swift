@@ -232,14 +232,6 @@ class TableViewController: UITableViewController, UITextViewDelegate {
         let splitDuration :NSArray = tmpDuration.componentsSeparatedByString(" ")
         duration = splitDuration.objectAtIndex(0) as! String
         
-        print(start)
-        print(end)
-        print(duration)
-        print(date)
-        print(name_compagny)
-        print(user)
-
-        
         do {
             let post:NSString = "start=\(start)&end=\(end)&duration=\(duration)&date=\(date)&compagny=\(name_compagny)&user=\(user)"
             let url : NSURL = NSURL(string:"http://localhost/~louischeminant/MyJobsPortalAPI/jsonsappointement.php")!
@@ -257,8 +249,6 @@ class TableViewController: UITableViewController, UITextViewDelegate {
             let task = session.dataTaskWithRequest(request, completionHandler: {data, response, error -> Void in
                 if (data != nil) {
                     let res : NSHTTPURLResponse = response as! NSHTTPURLResponse
-                                        let responseData:NSString  = NSString(data:data!, encoding:NSUTF8StringEncoding)!
-                                        NSLog("Response ==> %@", responseData);
                     if (res.statusCode >= 200 && res.statusCode < 300) {
                         do {
                             let jsonData = try NSJSONSerialization.JSONObjectWithData(data!, options:NSJSONReadingOptions.MutableContainers ) as! NSDictionary

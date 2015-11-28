@@ -46,7 +46,7 @@ class LoginUserVC: UIViewController, UITextFieldDelegate {
         } else {
             do {
                 let post : NSString = "mail=\(login)&password=\(password)&db=users"
-                let url : NSURL = NSURL(string:"http://192.168.22.149/~louischeminant/MyJobsPortalAPI/jsonlogin.php")!
+                let url : NSURL = NSURL(string:"http://localhost/~louischeminant/MyJobsPortalAPI/jsonlogin.php")!
                 let postData:NSData = post.dataUsingEncoding(NSUTF8StringEncoding)!
                 let postLength:NSString = String(postData.length)
                 let session = NSURLSession.sharedSession()
