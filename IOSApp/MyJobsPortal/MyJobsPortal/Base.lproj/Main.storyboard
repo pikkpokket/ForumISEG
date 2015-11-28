@@ -956,6 +956,9 @@
                                         </tableViewCellContentView>
                                         <animations/>
                                         <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                        <connections>
+                                            <segue destination="dd6-VC-OgA" kind="custom" customClass="SWRevealViewControllerSeguePushController" id="xwx-4v-spT"/>
+                                        </connections>
                                     </tableViewCell>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="ULj-Fj-rci">
                                         <rect key="frame" x="0.0" y="132" width="600" height="44"/>
@@ -1051,7 +1054,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="nzF-DX-x90" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3907" y="-1407"/>
+            <point key="canvasLocation" x="4707" y="-299"/>
         </scene>
         <!--Main View Controller-->
         <scene sceneID="fie-dQ-0uh">
@@ -1148,7 +1151,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zj5-sa-TsP" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5495" y="-299"/>
+            <point key="canvasLocation" x="6283" y="-299"/>
         </scene>
         <!--Offer View Controller-->
         <scene sceneID="Vqz-gE-iW7">
@@ -1404,7 +1407,7 @@ Rue Lateulade
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="lQn-Nf-gqi" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="6284" y="-299"/>
+            <point key="canvasLocation" x="7072" y="-299"/>
         </scene>
         <!--Hour Table View Controller-->
         <scene sceneID="GTs-nU-l6d">
@@ -1435,7 +1438,39 @@ Rue Lateulade
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="sdw-XS-QbK" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="7133" y="-299"/>
+            <point key="canvasLocation" x="7921" y="-299"/>
+        </scene>
+        <!--Planning Table View Controller-->
+        <scene sceneID="snA-ft-u6o">
+            <objects>
+                <tableViewController id="vqs-rN-9lO" customClass="PlanningTableViewController" customModule="MyJobsPortal" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="Ci4-Eo-SL9">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <animations/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="PRO-QM-GWf">
+                                <rect key="frame" x="0.0" y="92" width="600" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="PRO-QM-GWf" id="8ss-VJ-v51">
+                                    <rect key="frame" x="0.0" y="0.0" width="600" height="43.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <animations/>
+                                </tableViewCellContentView>
+                                <animations/>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="vqs-rN-9lO" id="YkH-TW-nSu"/>
+                            <outlet property="delegate" destination="vqs-rN-9lO" id="6NM-OJ-WO0"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" id="uRC-ef-yFp"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ODv-76-lJQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="6283" y="-1012"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="mhW-s5-MVH">
@@ -1454,7 +1489,7 @@ Rue Lateulade
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="lzI-Sc-nva" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4707" y="-299"/>
+            <point key="canvasLocation" x="5495" y="-299"/>
         </scene>
         <!--Reveal View Controller-->
         <scene sceneID="u0S-s4-lUV">
@@ -2383,6 +2418,25 @@ Rue Lateulade
             </objects>
             <point key="canvasLocation" x="5495" y="1813"/>
         </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="68N-Zm-ch8">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="dd6-VC-OgA" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="zBL-1s-6Sn">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <animations/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="vqs-rN-9lO" kind="relationship" relationship="rootViewController" id="J5z-S6-pyU"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="XjK-QE-nHe" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="5495" y="-1012"/>
+        </scene>
     </scenes>
     <resources>
         <image name="Logo" width="216" height="130"/>
@@ -2394,9 +2448,9 @@ Rue Lateulade
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="zxM-IO-c1T"/>
-        <segue reference="mxJ-aZ-Jhe"/>
+        <segue reference="9w1-I7-9JO"/>
+        <segue reference="6WI-xh-2sc"/>
         <segue reference="WXI-iF-18X"/>
         <segue reference="fkx-j3-4EZ"/>
-        <segue reference="6WI-xh-2sc"/>
     </inferredMetricsTieBreakers>
 </document>

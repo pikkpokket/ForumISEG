@@ -234,7 +234,7 @@ class TableViewController: UITableViewController, UITextViewDelegate {
         
         do {
             let post:NSString = "start=\(start)&end=\(end)&duration=\(duration)&date=\(date)&compagny=\(name_compagny)&user=\(user)"
-            let url : NSURL = NSURL(string:"http://localhost/~louischeminant/MyJobsPortalAPI/jsonsappointement.php")!
+            let url : NSURL = NSURL(string:"http://localhost/~louischeminant/MyJobsPortalAPI/jsonsappointment.php")!
             let postData:NSData = post.dataUsingEncoding(NSUTF8StringEncoding)!
             let postLength:NSString = String(postData.length)
             let session = NSURLSession.sharedSession()

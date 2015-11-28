@@ -211,7 +211,7 @@ class MainViewController: UIViewController, UICollectionViewDelegate, UICollecti
         for var i=0; i < contact.count; i++ {
             var tmpContact : Contact = Contact()
             tmpContact = contact.objectAtIndex(i) as! Contact
-            if tmpContact.compagny == selectedEntreprise.name {
+            if (tmpContact.compagny == selectedEntreprise.name) && tmpContact.selected == "1" {
                 selectedContact.append(contact.objectAtIndex(i) as! Contact)
             }
         }
@@ -222,6 +222,7 @@ class MainViewController: UIViewController, UICollectionViewDelegate, UICollecti
         let detailVC : OfferViewController = segue.destinationViewController as! OfferViewController
         detailVC.selectedEntreprise = selectedEntreprise
         detailVC.selectedContact = selectedContact
+        detailVC.selectedUser = selectedUser
     }
 
 }

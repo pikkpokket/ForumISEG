@@ -30,6 +30,8 @@
 		95C44D751BF3AF300015AC58 /* SignUpUserVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95C44D741BF3AF300015AC58 /* SignUpUserVC.swift */; };
 		95ED5A841C09B29B0001A894 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95ED5A831C09B29B0001A894 /* User.swift */; };
 		95ED5A861C09C4170001A894 /* Contact.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95ED5A851C09C4170001A894 /* Contact.swift */; };
+		95ED5A881C0A584E0001A894 /* Hour.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95ED5A871C0A584E0001A894 /* Hour.swift */; };
+		95ED5A8C1C0A732A0001A894 /* PlanningTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95ED5A8B1C0A732A0001A894 /* PlanningTableViewController.swift */; };
 		95FF21E81BFB2FBD00703A10 /* LoginSocietyVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95FF21E71BFB2FBD00703A10 /* LoginSocietyVC.swift */; };
 /* End PBXBuildFile section */
 
@@ -61,6 +63,8 @@
 		95C44D741BF3AF300015AC58 /* SignUpUserVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignUpUserVC.swift; sourceTree = "<group>"; };
 		95ED5A831C09B29B0001A894 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		95ED5A851C09C4170001A894 /* Contact.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Contact.swift; sourceTree = "<group>"; };
+		95ED5A871C0A584E0001A894 /* Hour.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Hour.swift; sourceTree = "<group>"; };
+		95ED5A8B1C0A732A0001A894 /* PlanningTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlanningTableViewController.swift; sourceTree = "<group>"; };
 		95FF21E71BFB2FBD00703A10 /* LoginSocietyVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginSocietyVC.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -108,6 +112,7 @@
 				957DA4091BFF17020078022D /* Login */,
 				957DA40A1BFF172B0078022D /* Main */,
 				957DA40C1BFF18F20078022D /* Offer */,
+				95ED5A8D1C0A74440001A894 /* Planning */,
 			);
 			name = User;
 			sourceTree = "<group>";
@@ -168,6 +173,7 @@
 			children = (
 				954BC9B51BF78DDB00D5A991 /* OfferViewController.swift */,
 				957A532C1BF9016600271D0A /* HourTableViewController.swift */,
+				95ED5A871C0A584E0001A894 /* Hour.swift */,
 			);
 			name = Offer;
 			sourceTree = "<group>";
@@ -212,6 +218,14 @@
 				957DA40B1BFF175A0078022D /* Others */,
 			);
 			path = MyJobsPortal;
+			sourceTree = "<group>";
+		};
+		95ED5A8D1C0A74440001A894 /* Planning */ = {
+			isa = PBXGroup;
+			children = (
+				95ED5A8B1C0A732A0001A894 /* PlanningTableViewController.swift */,
+			);
+			name = Planning;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -300,11 +314,13 @@
 				95C44D5F1BF3236D0015AC58 /* AppDelegate.swift in Sources */,
 				957BAD141BF6271800DE05B2 /* MenuTableViewController.swift in Sources */,
 				957BAD161BF6860200DE05B2 /* CollectionViewCell.swift in Sources */,
+				95ED5A881C0A584E0001A894 /* Hour.swift in Sources */,
 				954BC9BA1BF7CB4B00D5A991 /* Entreprise.swift in Sources */,
 				954A65671C01259D007E4736 /* TableViewController.swift in Sources */,
 				959B78DA1BF55ED900E23D28 /* SWRevealViewController.m in Sources */,
 				95B573B31C06EA42004C73C5 /* Recruiters.swift in Sources */,
 				954BC9B61BF78DDB00D5A991 /* OfferViewController.swift in Sources */,
+				95ED5A8C1C0A732A0001A894 /* PlanningTableViewController.swift in Sources */,
 				957DA4051BFF06400078022D /* FirstViewController.swift in Sources */,
 				95ED5A861C09C4170001A894 /* Contact.swift in Sources */,
 				957DA4011BFEA1530078022D /* MainCompagnyViewController.swift in Sources */,

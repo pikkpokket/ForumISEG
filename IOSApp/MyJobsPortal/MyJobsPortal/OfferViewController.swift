@@ -22,6 +22,7 @@ class OfferViewController: UIViewController {
     @IBOutlet weak var map: MKMapView!
     
     var selectedEntreprise : Entreprise = Entreprise()
+    var selectedUser : User = User()
     var selectedContact : [Contact] = []
     
     override func viewDidLoad() {
@@ -40,6 +41,7 @@ class OfferViewController: UIViewController {
         lblAddress.text = self.selectedEntreprise.address
         lblType.text = self.selectedEntreprise.type
         lblResume.text = self.selectedEntreprise.description_compagny
+        
         var arrayContact : [String] = [String]()
         var displayContact : String = String()
         for var i=0; i<selectedContact.count; i++ {
@@ -66,5 +68,11 @@ class OfferViewController: UIViewController {
         let pin : MKPointAnnotation = MKPointAnnotation()
         pin.coordinate = poiCoodinates
         map.addAnnotation(pin)
+    }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        let hourVC : HourTableViewController = segue.destinationViewController as! HourTableViewController
+        hourVC.selectedEntreprise = selectedEntreprise
+        hourVC.selectedUser = selectedUser
     }
 }
