@@ -72,6 +72,32 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		957B8B2B1C08B2B300930CE2 /* Main */ = {
+			isa = PBXGroup;
+			children = (
+				957DA4001BFEA1530078022D /* MainCompagnyViewController.swift */,
+			);
+			name = Main;
+			sourceTree = "<group>";
+		};
+		957B8B2C1C08B2BE00930CE2 /* Recruiter */ = {
+			isa = PBXGroup;
+			children = (
+				957DA40D1BFF863C0078022D /* RecruiterViewController.swift */,
+				957DA4171BFFA3250078022D /* AddRecuiterViewController.swift */,
+				95B573B21C06EA42004C73C5 /* Recruiters.swift */,
+			);
+			name = Recruiter;
+			sourceTree = "<group>";
+		};
+		957B8B2D1C08B2C500930CE2 /* Offer */ = {
+			isa = PBXGroup;
+			children = (
+				954A65661C01259D007E4736 /* TableViewController.swift */,
+			);
+			name = Offer;
+			sourceTree = "<group>";
+		};
 		957DA4061BFF16A40078022D /* User */ = {
 			isa = PBXGroup;
 			children = (
@@ -86,11 +112,9 @@
 			isa = PBXGroup;
 			children = (
 				957DA4081BFF16F90078022D /* Login */,
-				957DA4001BFEA1530078022D /* MainCompagnyViewController.swift */,
-				954A65661C01259D007E4736 /* TableViewController.swift */,
-				957DA40D1BFF863C0078022D /* RecruiterViewController.swift */,
-				957DA4171BFFA3250078022D /* AddRecuiterViewController.swift */,
-				95B573B21C06EA42004C73C5 /* Recruiters.swift */,
+				957B8B2B1C08B2B300930CE2 /* Main */,
+				957B8B2D1C08B2C500930CE2 /* Offer */,
+				957B8B2C1C08B2BE00930CE2 /* Recruiter */,
 			);
 			name = Compagny;
 			sourceTree = "<group>";

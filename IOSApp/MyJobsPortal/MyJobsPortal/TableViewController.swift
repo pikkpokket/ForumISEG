@@ -34,6 +34,14 @@ class TableViewController: UITableViewController, UITextViewDelegate {
     var longitude: Double = 0.0
     var lookupAddressResults: Dictionary<NSObject, AnyObject>!
     
+    var start: String = ""
+    var end: String = ""
+    var duration: String = ""
+    var date: String = ""
+    var user: String = ""
+    
+    let titleError : NSString = "La connexion a échoué !"
+    
     var datePickerHidden = false
     var datePickerHidden2 = false
     var datePickerHidden3 = false
@@ -162,7 +170,6 @@ class TableViewController: UITableViewController, UITextViewDelegate {
         
         let prefs:NSUserDefaults = NSUserDefaults.standardUserDefaults()
         if let data : NSArray = prefs.valueForKey("data") as? NSArray {
-            print(data)
             name_compagny = data[1] as! String
             address_c = data[5] as! String
         }
@@ -197,7 +204,7 @@ class TableViewController: UITableViewController, UITextViewDelegate {
                                 self.longitude = (location["lng"] as! NSNumber).doubleValue
                                 
                                 NSOperationQueue.mainQueue().addOperationWithBlock {
-                                    self.connection()
+                                    self.createOffer()
                                 }
                             }
                         } catch {
@@ -210,30 +217,33 @@ class TableViewController: UITableViewController, UITextViewDelegate {
         }
     }
     
-    func connection() {
+    func createRdv() {
+        let tmpStart = self.detailLabelStart.text!
+        let tmpEnd = self.detailLabelEnd.text!
+        let tmpDuration = self.detailLabelDuring.text!
         
-        type = scType.titleForSegmentAtIndex(scType.selectedSegmentIndex)!
-        offer = self.txtOffer.text!
-        missions = self.txtMission.text!
-        address = address_c
-        level = self.txtLevel.text!
+        let splitStart :NSArray = tmpStart.componentsSeparatedByString(" ")
+        start = splitStart.objectAtIndex(1) as! String
+        date = splitStart.objectAtIndex(0) as! String
         
+        let splitEnd :NSArray = tmpEnd.componentsSeparatedByString(" ")
+        end = splitEnd.objectAtIndex(1) as! String
+        
+        let splitDuration :NSArray = tmpDuration.componentsSeparatedByString(" ")
+        duration = splitDuration.objectAtIndex(0) as! String
+        
+        print(start)
+        print(end)
+        print(duration)
+        print(date)
         print(name_compagny)
-        print(type)
-        print(offer)
-        print(missions)
-        print(level)
-        print(address)
-        print(latitude)
-        print(longitude)
+        print(user)
+
         
-        
-        let titleError : NSString = "La connexion a échoué !"
         do {
-            let post:NSString = "compagny=\(name_compagny)&type=\(type)&offer=\(offer)&missions=\(missions)&level=\(level)&address=\(address)&latitude=\(latitude)&longitude=\(longitude)"
-            let url : NSURL = NSURL(string:"http://localhost/~louischeminant/MyJobsPortalAPI/jsonoffer.php")!
+            let post:NSString = "start=\(start)&end=\(end)&duration=\(duration)&date=\(date)&compagny=\(name_compagny)&user=\(user)"
+            let url : NSURL = NSURL(string:"http://localhost/~louischeminant/MyJobsPortalAPI/jsonsappointement.php")!
             let postData:NSData = post.dataUsingEncoding(NSUTF8StringEncoding)!
-            print(postData)
             let postLength:NSString = String(postData.length)
             let session = NSURLSession.sharedSession()
             
@@ -247,8 +257,8 @@ class TableViewController: UITableViewController, UITextViewDelegate {
             let task = session.dataTaskWithRequest(request, completionHandler: {data, response, error -> Void in
                 if (data != nil) {
                     let res : NSHTTPURLResponse = response as! NSHTTPURLResponse
-                    let responseData:NSString  = NSString(data:data!, encoding:NSUTF8StringEncoding)!
-                    NSLog("Response ==> %@", responseData);
+                                        let responseData:NSString  = NSString(data:data!, encoding:NSUTF8StringEncoding)!
+                                        NSLog("Response ==> %@", responseData);
                     if (res.statusCode >= 200 && res.statusCode < 300) {
                         do {
                             let jsonData = try NSJSONSerialization.JSONObjectWithData(data!, options:NSJSONReadingOptions.MutableContainers ) as! NSDictionary
@@ -266,16 +276,68 @@ class TableViewController: UITableViewController, UITextViewDelegate {
                                     self.presentViewController(alert, animated: true){}
                                 }
                             } else {
-                                self.errorAlert(titleError as String, message: "Une erreur s'est produite")
+                                self.errorAlert(self.titleError as String, message: "Une erreur s'est produite")
                             }
                         } catch {
                             print(error)
                         }
                     } else {
-                        self.errorAlert(titleError as String, message: "Connection Failed")
+                        self.errorAlert(self.titleError as String, message: "Connection Failed")
                     }
                 } else {
-                    self.errorAlert(titleError as String, message: "Échec de connexion")
+                    self.errorAlert(self.titleError as String, message: "Échec de connexion")
+                }
+            })
+            task.resume()
+        }
+        
+        
+    }
+    
+    func createOffer() {
+        
+        type = scType.titleForSegmentAtIndex(scType.selectedSegmentIndex)!
+        offer = self.txtOffer.text!
+        missions = self.txtMission.text!
+        address = address_c
+        level = self.txtLevel.text!
+        
+        do {
+            let post:NSString = "compagny=\(name_compagny)&type=\(type)&offer=\(offer)&missions=\(missions)&level=\(level)&address=\(address)&latitude=\(latitude)&longitude=\(longitude)"
+            let url : NSURL = NSURL(string:"http://localhost/~louischeminant/MyJobsPortalAPI/jsonoffer.php")!
+            let postData:NSData = post.dataUsingEncoding(NSUTF8StringEncoding)!
+            let postLength:NSString = String(postData.length)
+            let session = NSURLSession.sharedSession()
+            
+            let request:NSMutableURLRequest = NSMutableURLRequest(URL: url)
+            request.HTTPMethod = "POST"
+            request.HTTPBody = postData
+            request.setValue(postLength as String, forHTTPHeaderField: "Content-Length")
+            request.setValue("application/x-www-form-urlencoded", forHTTPHeaderField: "Content-Type")
+            request.setValue("application/json", forHTTPHeaderField: "Accept")
+            
+            let task = session.dataTaskWithRequest(request, completionHandler: {data, response, error -> Void in
+                if (data != nil) {
+                    let res : NSHTTPURLResponse = response as! NSHTTPURLResponse
+                    if (res.statusCode >= 200 && res.statusCode < 300) {
+                        do {
+                            let jsonData = try NSJSONSerialization.JSONObjectWithData(data!, options:NSJSONReadingOptions.MutableContainers ) as! NSDictionary
+                            let success:NSInteger = jsonData.valueForKey("success") as! NSInteger
+                            if (success == 1) {
+                                NSOperationQueue.mainQueue().addOperationWithBlock {
+                                    self.createRdv()
+                                }
+                            } else {
+                                self.errorAlert(self.titleError as String, message: "Une erreur s'est produite")
+                            }
+                        } catch {
+                            print(error)
+                        }
+                    } else {
+                        self.errorAlert(self.titleError as String, message: "Connection Failed")
+                    }
+                } else {
+                    self.errorAlert(self.titleError as String, message: "Échec de connexion")
                 }
             })
             task.resume()

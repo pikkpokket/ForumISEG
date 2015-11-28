@@ -14,9 +14,6 @@ class RecruiterViewController: UIViewController, UITableViewDelegate, UITableVie
     @IBOutlet weak var addBtn: UIButton!
     @IBOutlet weak var RecruiterTV: UITableView!
     
-//    var recruiters = [[String]]()
-//    var newsRecruiter : [String] = []
-//    var recruiter = String()
     var compagny = String()
     var allRecruiter = NSMutableArray()
     var selectedRecruiter : Recruiters = Recruiters()
@@ -229,7 +226,7 @@ class RecruiterViewController: UIViewController, UITableViewDelegate, UITableVie
                                 let jsonData = try NSJSONSerialization.JSONObjectWithData(data!, options:NSJSONReadingOptions.MutableContainers ) as! NSDictionary
                                 let success:NSInteger = jsonData.valueForKey("success") as! NSInteger
                                 if (success == 1) {
-                                    let alert = UIAlertController(title: "Enregistrer", message:"L'offre a bien été créée" as String, preferredStyle: .Alert)
+                                    let alert = UIAlertController(title: "Enregistrer", message:"Les recruteurs sont à jour" as String, preferredStyle: .Alert)
                                     let okAction = UIAlertAction(title: "OK", style: UIAlertActionStyle.Default) {
                                         UIAlertAction in
                                         let storyboard = UIStoryboard(name: "Main", bundle: nil)
