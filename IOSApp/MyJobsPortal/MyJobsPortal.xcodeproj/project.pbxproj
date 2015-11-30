@@ -32,6 +32,8 @@
 		95ED5A861C09C4170001A894 /* Contact.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95ED5A851C09C4170001A894 /* Contact.swift */; };
 		95ED5A881C0A584E0001A894 /* Hour.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95ED5A871C0A584E0001A894 /* Hour.swift */; };
 		95ED5A8C1C0A732A0001A894 /* PlanningTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95ED5A8B1C0A732A0001A894 /* PlanningTableViewController.swift */; };
+		95ED5A8F1C0B00640001A894 /* EditOfferViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95ED5A8E1C0B00640001A894 /* EditOfferViewController.swift */; };
+		95ED5A911C0B00DA0001A894 /* Offer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95ED5A901C0B00DA0001A894 /* Offer.swift */; };
 		95FF21E81BFB2FBD00703A10 /* LoginSocietyVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95FF21E71BFB2FBD00703A10 /* LoginSocietyVC.swift */; };
 /* End PBXBuildFile section */
 
@@ -65,6 +67,8 @@
 		95ED5A851C09C4170001A894 /* Contact.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Contact.swift; sourceTree = "<group>"; };
 		95ED5A871C0A584E0001A894 /* Hour.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Hour.swift; sourceTree = "<group>"; };
 		95ED5A8B1C0A732A0001A894 /* PlanningTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlanningTableViewController.swift; sourceTree = "<group>"; };
+		95ED5A8E1C0B00640001A894 /* EditOfferViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditOfferViewController.swift; sourceTree = "<group>"; };
+		95ED5A901C0B00DA0001A894 /* Offer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Offer.swift; sourceTree = "<group>"; };
 		95FF21E71BFB2FBD00703A10 /* LoginSocietyVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginSocietyVC.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -101,7 +105,9 @@
 		957B8B2D1C08B2C500930CE2 /* Offer */ = {
 			isa = PBXGroup;
 			children = (
+				95ED5A8E1C0B00640001A894 /* EditOfferViewController.swift */,
 				954A65661C01259D007E4736 /* TableViewController.swift */,
+				95ED5A901C0B00DA0001A894 /* Offer.swift */,
 			);
 			name = Offer;
 			sourceTree = "<group>";
@@ -308,6 +314,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				95ED5A911C0B00DA0001A894 /* Offer.swift in Sources */,
 				95C44D711BF32CE10015AC58 /* LoginUserVC.swift in Sources */,
 				95FF21E81BFB2FBD00703A10 /* LoginSocietyVC.swift in Sources */,
 				957A532D1BF9016600271D0A /* HourTableViewController.swift in Sources */,
@@ -328,6 +335,7 @@
 				95C44D731BF3A4720015AC58 /* MainUserViewController.swift in Sources */,
 				95C44D751BF3AF300015AC58 /* SignUpUserVC.swift in Sources */,
 				957DA4181BFFA3250078022D /* AddRecuiterViewController.swift in Sources */,
+				95ED5A8F1C0B00640001A894 /* EditOfferViewController.swift in Sources */,
 				955878EA1BFD2BA800522DC7 /* SignUpSocietyVC.swift in Sources */,
 				95ED5A841C09B29B0001A894 /* User.swift in Sources */,
 			);

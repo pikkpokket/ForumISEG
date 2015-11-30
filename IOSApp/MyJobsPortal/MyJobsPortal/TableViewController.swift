@@ -21,15 +21,13 @@ class TableViewController: UITableViewController, UITextViewDelegate {
     @IBOutlet weak var txtMission: UITextView!
     @IBOutlet weak var txtLevel: UITextField!
     
-    @IBOutlet weak var menuBtn: UIBarButtonItem!
-    
+    var selectedOffer : Offer = Offer()
     var name_compagny: String = ""
     var type: String = ""
     var offer: String = ""
     var missions: String = ""
     var address: String = ""
     var level: String = ""
-    var address_c: String = ""
     var latitude: Double = 0.0
     var longitude: Double = 0.0
     var lookupAddressResults: Dictionary<NSObject, AnyObject>!
@@ -39,6 +37,7 @@ class TableViewController: UITableViewController, UITextViewDelegate {
     var duration: String = ""
     var date: String = ""
     var user: String = ""
+    var id:Int = Int()
     
     let titleError : NSString = "La connexion a échoué !"
     
@@ -48,21 +47,33 @@ class TableViewController: UITableViewController, UITextViewDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        id = selectedOffer.id
+        
+        txtOffer.text = selectedOffer.offer
+        txtLevel.text = selectedOffer.level
+        
+        for var i=0; i<scType.numberOfSegments; i++ {
+            if selectedOffer.type == scType.titleForSegmentAtIndex(i) {
+                scType.selectedSegmentIndex = i
+            }
+        }
+        
+        if selectedOffer.missions != "" {
+            txtMission.text = selectedOffer.missions
+        } else {
+            txtMission.text = "Description de l'offre"
+            txtMission.textColor = UIColor.lightGrayColor()
+            txtMission.alpha = 0.6
+            txtMission.delegate = self
+            txtMission.selectedTextRange = txtMission.textRangeFromPosition(txtMission.beginningOfDocument, toPosition: txtMission.beginningOfDocument)
+        }
+        
         datePickerHidden = !datePickerHidden
         datePickerHidden2 = !datePickerHidden2
         datePickerHidden3 = !datePickerHidden3
         datePickerChanged()
         
-        menuBtn.target = revealViewController()
-        menuBtn.action = "revealToggle:"
-        view.addGestureRecognizer(self.revealViewController().panGestureRecognizer())
-        
-        txtMission.text = "Description de l'offre"
-        txtMission.textColor = UIColor.lightGrayColor()
-        txtMission.alpha = 0.6
-        txtMission.delegate = self
-        
-        txtMission.selectedTextRange = txtMission.textRangeFromPosition(txtMission.beginningOfDocument, toPosition: txtMission.beginningOfDocument)
     }
     
     func textView(textView: UITextView, shouldChangeTextInRange range: NSRange, replacementText text: String) -> Bool {
@@ -168,13 +179,13 @@ class TableViewController: UITableViewController, UITextViewDelegate {
     
     @IBAction func validTapped(sender: AnyObject) {
         
-        let prefs:NSUserDefaults = NSUserDefaults.standardUserDefaults()
-        if let data : NSArray = prefs.valueForKey("data") as? NSArray {
-            name_compagny = data[1] as! String
-            address_c = data[5] as! String
+        if let data : NSArray = NSUserDefaults.standardUserDefaults().valueForKey("compagnyData") as? NSArray {
+            let jsonElement : NSDictionary = data[0] as! NSDictionary
+            name_compagny = jsonElement["name"] as! String
+            address = jsonElement["address"] as! String
         }
 
-        self.geoCodeUsingAddress(address_c)
+        self.geoCodeUsingAddress(address)
     }
     
     func geoCodeUsingAddress(address : String) {
@@ -232,6 +243,13 @@ class TableViewController: UITableViewController, UITextViewDelegate {
         let splitDuration :NSArray = tmpDuration.componentsSeparatedByString(" ")
         duration = splitDuration.objectAtIndex(0) as! String
         
+        print(start)
+        print(end)
+        print(duration);
+        print(date);
+        print(name_compagny);
+        print(user);
+        
         do {
             let post:NSString = "start=\(start)&end=\(end)&duration=\(duration)&date=\(date)&compagny=\(name_compagny)&user=\(user)"
             let url : NSURL = NSURL(string:"http://localhost/~louischeminant/MyJobsPortalAPI/jsonsappointment.php")!
@@ -249,6 +267,8 @@ class TableViewController: UITableViewController, UITextViewDelegate {
             let task = session.dataTaskWithRequest(request, completionHandler: {data, response, error -> Void in
                 if (data != nil) {
                     let res : NSHTTPURLResponse = response as! NSHTTPURLResponse
+                    let responseData:NSString  = NSString(data:data!, encoding:NSUTF8StringEncoding)!
+                    NSLog("Response ==> %@", responseData);
                     if (res.statusCode >= 200 && res.statusCode < 300) {
                         do {
                             let jsonData = try NSJSONSerialization.JSONObjectWithData(data!, options:NSJSONReadingOptions.MutableContainers ) as! NSDictionary
@@ -289,48 +309,103 @@ class TableViewController: UITableViewController, UITextViewDelegate {
         type = scType.titleForSegmentAtIndex(scType.selectedSegmentIndex)!
         offer = self.txtOffer.text!
         missions = self.txtMission.text!
-        address = address_c
         level = self.txtLevel.text!
         
-        do {
-            let post:NSString = "compagny=\(name_compagny)&type=\(type)&offer=\(offer)&missions=\(missions)&level=\(level)&address=\(address)&latitude=\(latitude)&longitude=\(longitude)"
-            let url : NSURL = NSURL(string:"http://localhost/~louischeminant/MyJobsPortalAPI/jsonoffer.php")!
-            let postData:NSData = post.dataUsingEncoding(NSUTF8StringEncoding)!
-            let postLength:NSString = String(postData.length)
-            let session = NSURLSession.sharedSession()
+        if id == 0 {
+        
+            do {
+                let post:NSString = "compagny=\(name_compagny)&type=\(type)&offer=\(offer)&missions=\(missions)&level=\(level)&address=\(address)&latitude=\(latitude)&longitude=\(longitude)"
+                let url : NSURL = NSURL(string:"http://localhost/~louischeminant/MyJobsPortalAPI/jsonoffer.php")!
+                let postData:NSData = post.dataUsingEncoding(NSUTF8StringEncoding)!
+                let postLength:NSString = String(postData.length)
+                let session = NSURLSession.sharedSession()
             
-            let request:NSMutableURLRequest = NSMutableURLRequest(URL: url)
-            request.HTTPMethod = "POST"
-            request.HTTPBody = postData
-            request.setValue(postLength as String, forHTTPHeaderField: "Content-Length")
-            request.setValue("application/x-www-form-urlencoded", forHTTPHeaderField: "Content-Type")
-            request.setValue("application/json", forHTTPHeaderField: "Accept")
+                let request:NSMutableURLRequest = NSMutableURLRequest(URL: url)
+                request.HTTPMethod = "POST"
+                request.HTTPBody = postData
+                request.setValue(postLength as String, forHTTPHeaderField: "Content-Length")
+                request.setValue("application/x-www-form-urlencoded", forHTTPHeaderField: "Content-Type")
+                request.setValue("application/json", forHTTPHeaderField: "Accept")
             
-            let task = session.dataTaskWithRequest(request, completionHandler: {data, response, error -> Void in
-                if (data != nil) {
-                    let res : NSHTTPURLResponse = response as! NSHTTPURLResponse
-                    if (res.statusCode >= 200 && res.statusCode < 300) {
-                        do {
-                            let jsonData = try NSJSONSerialization.JSONObjectWithData(data!, options:NSJSONReadingOptions.MutableContainers ) as! NSDictionary
-                            let success:NSInteger = jsonData.valueForKey("success") as! NSInteger
-                            if (success == 1) {
-                                NSOperationQueue.mainQueue().addOperationWithBlock {
-                                    self.createRdv()
+                let task = session.dataTaskWithRequest(request, completionHandler: {data, response, error -> Void in
+                    if (data != nil) {
+                        let res : NSHTTPURLResponse = response as! NSHTTPURLResponse
+                        let responseData:NSString  = NSString(data:data!, encoding:NSUTF8StringEncoding)!
+                        NSLog("Response ==> %@", responseData);
+                        if (res.statusCode >= 200 && res.statusCode < 300) {
+                            do {
+                                let jsonData = try NSJSONSerialization.JSONObjectWithData(data!, options:NSJSONReadingOptions.MutableContainers ) as! NSDictionary
+                                let success:NSInteger = jsonData.valueForKey("success") as! NSInteger
+                                if (success == 1) {
+                                    NSOperationQueue.mainQueue().addOperationWithBlock {
+                                        self.createRdv()
+                                    }
+                                } else {
+                                    self.errorAlert(self.titleError as String, message: "Une erreur s'est produite")
                                 }
-                            } else {
-                                self.errorAlert(self.titleError as String, message: "Une erreur s'est produite")
+                            } catch {
+                                print(error)
                             }
-                        } catch {
-                            print(error)
+                        } else {
+                            self.errorAlert(self.titleError as String, message: "Connection Failed")
                         }
                     } else {
-                        self.errorAlert(self.titleError as String, message: "Connection Failed")
+                        self.errorAlert(self.titleError as String, message: "Échec de connexion")
                     }
-                } else {
-                    self.errorAlert(self.titleError as String, message: "Échec de connexion")
-                }
-            })
-            task.resume()
+                })
+                task.resume()
+            }
+        } else {
+            do {
+                let post:NSString = "id=\(id)&compagny=\(name_compagny)&type=\(type)&offer=\(offer)&missions=\(missions)&level=\(level)&address=\(address)&latitude=\(latitude)&longitude=\(longitude)"
+                let url : NSURL = NSURL(string:"http://localhost/~louischeminant/MyJobsPortalAPI/jsonoffer.php")!
+                let postData:NSData = post.dataUsingEncoding(NSUTF8StringEncoding)!
+                let postLength:NSString = String(postData.length)
+                let session = NSURLSession.sharedSession()
+                
+                let request:NSMutableURLRequest = NSMutableURLRequest(URL: url)
+                request.HTTPMethod = "POST"
+                request.HTTPBody = postData
+                request.setValue(postLength as String, forHTTPHeaderField: "Content-Length")
+                request.setValue("application/x-www-form-urlencoded", forHTTPHeaderField: "Content-Type")
+                request.setValue("application/json", forHTTPHeaderField: "Accept")
+                
+                let task = session.dataTaskWithRequest(request, completionHandler: {data, response, error -> Void in
+                    if (data != nil) {
+                        let res : NSHTTPURLResponse = response as! NSHTTPURLResponse
+                        let responseData:NSString  = NSString(data:data!, encoding:NSUTF8StringEncoding)!
+                        NSLog("Response ==> %@", responseData);
+                        if (res.statusCode >= 200 && res.statusCode < 300) {
+                            do {
+                                let jsonData = try NSJSONSerialization.JSONObjectWithData(data!, options:NSJSONReadingOptions.MutableContainers ) as! NSDictionary
+                                let success:NSInteger = jsonData.valueForKey("success") as! NSInteger
+                                if (success == 1) {
+                                    let alert = UIAlertController(title: "Enregistrer", message:"L'offre a bien été modifié" as String, preferredStyle: .Alert)
+                                    let okAction = UIAlertAction(title: "OK", style: UIAlertActionStyle.Default) {
+                                        UIAlertAction in
+                                        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+                                        let mainViewController = storyboard.instantiateViewControllerWithIdentifier("MainCompagny") as? SWRevealViewController
+                                        self.presentViewController(mainViewController!, animated: true, completion: {})
+                                    }
+                                    alert.addAction(okAction)
+                                    NSOperationQueue.mainQueue().addOperationWithBlock {
+                                        self.presentViewController(alert, animated: true){}
+                                    }
+                                } else {
+                                    self.errorAlert(self.titleError as String, message: "Une erreur s'est produite")
+                                }
+                            } catch {
+                                print(error)
+                            }
+                        } else {
+                            self.errorAlert(self.titleError as String, message: "Connection Failed")
+                        }
+                    } else {
+                        self.errorAlert(self.titleError as String, message: "Échec de connexion")
+                    }
+                })
+                task.resume()
+            }
         }
     }
     

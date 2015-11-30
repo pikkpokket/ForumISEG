@@ -16,28 +16,24 @@ class MainCompagnyViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        connection()
+        loadCompagny()
         
         self.navigationController?.navigationBar.setBackgroundImage(UIImage(), forBarMetrics: UIBarMetrics.Default)
         self.navigationController?.navigationBar.shadowImage = UIImage()
         self.navigationController?.navigationBar.translucent = true
         
-//        if revealViewController() != nil {
-//            revealViewController().rightViewRevealWidth = 230
-            menuBtn.target = revealViewController()
-            menuBtn.action = "revealToggle:"
-            view.addGestureRecognizer(self.revealViewController().panGestureRecognizer())
-//        }
+        menuBtn.target = revealViewController()
+        menuBtn.action = "revealToggle:"
+        view.addGestureRecognizer(self.revealViewController().panGestureRecognizer())
 }
     
-    func connection() {
+    func loadCompagny() {
         let login : String! = NSUserDefaults.standardUserDefaults().valueForKey("USERNAME") as? String
-        lblName.text = "Bienvenue \(login)"
         let titleError : NSString = "La connexion a échoué !"
         
         do {
             let post:NSString = "mail=\(login)&db=compagnies"
-            let url : NSURL = NSURL(string:"http://localhost/~louischeminant/MyJobsPortalAPI/jsonconnect.php")!
+            let url : NSURL = NSURL(string:"http://localhost/~louischeminant/MyJobsPortalAPI/jsonuser.php")!
             let postData:NSData = post.dataUsingEncoding(NSUTF8StringEncoding)!
             let postLength:NSString = String(postData.length)
             let session = NSURLSession.sharedSession()
@@ -55,9 +51,13 @@ class MainCompagnyViewController: UIViewController {
                     if (res.statusCode >= 200 && res.statusCode < 300) {
                         do {
                             let jsonData = try NSJSONSerialization.JSONObjectWithData(data!, options:NSJSONReadingOptions.MutableContainers ) as! NSMutableArray
-                            NSUserDefaults.standardUserDefaults().setObject(jsonData, forKey: "data")
+                            let jsonElement : NSDictionary = jsonData[0] as! NSDictionary
+                            NSUserDefaults.standardUserDefaults().setObject(jsonData, forKey: "compagnyData")
                             NSUserDefaults.standardUserDefaults().setInteger(1, forKey: "ISLOGGEDIN")
                             NSUserDefaults.standardUserDefaults().synchronize()
+                            NSOperationQueue.mainQueue().addOperationWithBlock {
+                                self.lblName.text = "Bienvenue \(jsonElement["name"] as! String)"
+                            }
                         } catch {
                             print(error)
                         }

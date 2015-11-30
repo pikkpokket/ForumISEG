@@ -62,7 +62,6 @@ class LoginSocietyVC: UIViewController, UITextFieldDelegate {
                     if (data != nil) {
                         let res : NSHTTPURLResponse = response as! NSHTTPURLResponse
                         let responseData:NSString  = NSString(data:data!, encoding:NSUTF8StringEncoding)!
-                        
                         NSLog("Response ==> %@", responseData);
                         if (res.statusCode >= 200 && res.statusCode < 300) {
                             do {

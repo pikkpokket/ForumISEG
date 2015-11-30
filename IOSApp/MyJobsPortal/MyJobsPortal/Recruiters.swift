@@ -15,5 +15,5 @@ class Recruiters: NSObject {
     var position : String = ""
     var mail : String = ""
     var phone : String = ""
-    var selected : String = ""
+    var selected : Int = 0
 }

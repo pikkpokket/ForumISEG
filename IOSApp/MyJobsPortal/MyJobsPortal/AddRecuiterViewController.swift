@@ -40,9 +40,9 @@ class AddRecuiterViewController: UIViewController, UITextFieldDelegate {
 
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "doneSegue" {
-            let prefs:NSUserDefaults = NSUserDefaults.standardUserDefaults()
-            if let data : NSArray = prefs.valueForKey("data") as? NSArray {
-                compagny = data[1] as! String
+            if let data : NSArray = NSUserDefaults.standardUserDefaults().valueForKey("compagnyData") as? NSArray {
+                let jsonElement : NSDictionary = data[0] as! NSDictionary
+                compagny = jsonElement["name"] as! String
             }
             
             selectedRecruiter.name = txtName.text!

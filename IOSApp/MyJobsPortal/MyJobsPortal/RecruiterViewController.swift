@@ -11,22 +11,21 @@ import UIKit
 class RecruiterViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     @IBOutlet weak var menuBtn: UIBarButtonItem!
-    @IBOutlet weak var addBtn: UIButton!
     @IBOutlet weak var RecruiterTV: UITableView!
     
     var compagny = String()
     var allRecruiter = NSMutableArray()
     var selectedRecruiter : Recruiters = Recruiters()
     var newRecruiter : Recruiters = Recruiters()
-    
+
     let titleError : NSString = "La connexion a échoué !"
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let prefs:NSUserDefaults = NSUserDefaults.standardUserDefaults()
-        if let data : NSArray = prefs.valueForKey("data") as? NSArray {
-            compagny = data[1] as! String
+        if let data : NSArray = NSUserDefaults.standardUserDefaults().valueForKey("compagnyData") as? NSArray {
+            let jsonElement : NSDictionary = data[0] as! NSDictionary
+            compagny = jsonElement["name"] as! String
         }
         
         do {
@@ -59,7 +58,7 @@ class RecruiterViewController: UIViewController, UITableViewDelegate, UITableVie
                                 self.newRecruiter.position = jsonElement["position"] as! String
                                 self.newRecruiter.mail = jsonElement["mail"] as! String
                                 self.newRecruiter.phone = jsonElement["phone"] as! String
-                                self.newRecruiter.selected = jsonElement["selected"] as! String
+                                self.newRecruiter.selected = jsonElement["selected"] as! Int
 
                                 self.allRecruiter.addObject(self.newRecruiter)
                             }
@@ -127,7 +126,7 @@ class RecruiterViewController: UIViewController, UITableViewDelegate, UITableVie
         let switchSelected : UISwitch = UISwitch(frame: CGRectMake(cell.frame.width-90, cell.frame.height/2-31/2, 49, 31))
         switchSelected.addTarget(self, action: "switchValueDidChange:", forControlEvents: .ValueChanged);
         switchSelected.restorationIdentifier = "\(indexPath.row)"
-        if selectedRecruiter.selected == "1" {
+        if selectedRecruiter.selected == 1 {
             switchSelected.on = true
         }
         
@@ -147,10 +146,10 @@ class RecruiterViewController: UIViewController, UITableViewDelegate, UITableVie
         let id:String = sender.restorationIdentifier!
         selectedRecruiter = allRecruiter.objectAtIndex(Int(id)!) as! Recruiters
         if (sender.on == true){
-            selectedRecruiter.selected = "1"
+            selectedRecruiter.selected = 1
         }
         else{
-            selectedRecruiter.selected = "0"
+            selectedRecruiter.selected = 0
         }
     }
     
