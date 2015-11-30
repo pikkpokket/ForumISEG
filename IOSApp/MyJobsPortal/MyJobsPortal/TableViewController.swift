@@ -243,15 +243,8 @@ class TableViewController: UITableViewController, UITextViewDelegate {
         let splitDuration :NSArray = tmpDuration.componentsSeparatedByString(" ")
         duration = splitDuration.objectAtIndex(0) as! String
         
-        print(start)
-        print(end)
-        print(duration);
-        print(date);
-        print(name_compagny);
-        print(user);
-        
         do {
-            let post:NSString = "start=\(start)&end=\(end)&duration=\(duration)&date=\(date)&compagny=\(name_compagny)&user=\(user)"
+            let post:NSString = "start=\(start)&end=\(end)&duration=\(duration)&date=\(date)&compagny=\(name_compagny)&user=\(user)&id=\(id)"
             let url : NSURL = NSURL(string:"http://localhost/~louischeminant/MyJobsPortalAPI/jsonsappointment.php")!
             let postData:NSData = post.dataUsingEncoding(NSUTF8StringEncoding)!
             let postLength:NSString = String(postData.length)
@@ -335,13 +328,9 @@ class TableViewController: UITableViewController, UITextViewDelegate {
                         if (res.statusCode >= 200 && res.statusCode < 300) {
                             do {
                                 let jsonData = try NSJSONSerialization.JSONObjectWithData(data!, options:NSJSONReadingOptions.MutableContainers ) as! NSDictionary
-                                let success:NSInteger = jsonData.valueForKey("success") as! NSInteger
-                                if (success == 1) {
-                                    NSOperationQueue.mainQueue().addOperationWithBlock {
+                                self.id = jsonData.valueForKey("id") as! Int
+                                NSOperationQueue.mainQueue().addOperationWithBlock {
                                         self.createRdv()
-                                    }
-                                } else {
-                                    self.errorAlert(self.titleError as String, message: "Une erreur s'est produite")
                                 }
                             } catch {
                                 print(error)

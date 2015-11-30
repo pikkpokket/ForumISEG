@@ -1557,7 +1557,7 @@ Rue Lateulade
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5bw-zw-Z9f" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="6291" y="419"/>
+            <point key="canvasLocation" x="7323" y="323"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="L98-dV-mPT">

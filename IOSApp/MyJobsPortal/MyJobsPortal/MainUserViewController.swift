@@ -165,7 +165,8 @@ class MainViewController: UIViewController, UICollectionViewDelegate, UICollecti
                             newEntreprise.latitude = jsonElement["latitude"] as! String
                             newEntreprise.type = jsonElement["type"] as! String
                             newEntreprise.description_compagny = jsonElement["description"] as! String
-
+                            newEntreprise.id = (jsonElement["id"]?.doubleValue)!
+                            
                             self.entreprise.addObject(newEntreprise)
                         }
                         dispatch_async(dispatch_get_main_queue(), {

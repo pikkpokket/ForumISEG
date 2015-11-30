@@ -18,10 +18,6 @@ class Entreprise: NSObject {
     var latitude : String = ""
     var longitude : String = ""
     var description_compagny : String = ""
-    
-    
-    var start : String = ""
-    var end : String = ""
     var type : String = ""
-    var duration : Int = 0
+    var id : Double = Double()
 }

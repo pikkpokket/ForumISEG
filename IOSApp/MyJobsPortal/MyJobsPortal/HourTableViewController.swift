@@ -21,8 +21,10 @@ class HourTableViewController: UITableViewController {
         
         let titleError : NSString = "La connexion a échoué !"
         
+        print(selectedEntreprise.id)
+        
         do {
-            let post:NSString = "compagny=\(selectedEntreprise.name)&user="
+            let post:NSString = "id=\(selectedEntreprise.id)&user="
             let url : NSURL = NSURL(string:"http://localhost/~louischeminant/MyJobsPortalAPI/jsonsloadappointment.php")!
             let postData:NSData = post.dataUsingEncoding(NSUTF8StringEncoding)!
             let postLength:NSString = String(postData.length)
