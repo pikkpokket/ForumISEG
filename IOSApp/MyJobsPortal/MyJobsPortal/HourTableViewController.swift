@@ -21,8 +21,6 @@ class HourTableViewController: UITableViewController {
         
         let titleError : NSString = "La connexion a échoué !"
         
-        print(selectedEntreprise.id)
-        
         do {
             let post:NSString = "id=\(selectedEntreprise.id)&user="
             let url : NSURL = NSURL(string:"http://localhost/~louischeminant/MyJobsPortalAPI/jsonsloadappointment.php")!
@@ -40,8 +38,6 @@ class HourTableViewController: UITableViewController {
             let task = session.dataTaskWithRequest(request, completionHandler: {data, response, error -> Void in
                 if (data != nil) {
                     let res : NSHTTPURLResponse = response as! NSHTTPURLResponse
-                    let responseData:NSString  = NSString(data:data!, encoding:NSUTF8StringEncoding)!
-                    NSLog("Response ==> %@", responseData);
                     if (res.statusCode >= 200 && res.statusCode < 300) {
                         do {
                             let jsonData = try NSJSONSerialization.JSONObjectWithData(data!, options:NSJSONReadingOptions.MutableContainers ) as! NSMutableArray
@@ -134,8 +130,6 @@ class HourTableViewController: UITableViewController {
             let task = session.dataTaskWithRequest(request, completionHandler: {data, response, error -> Void in
                 if (data != nil) {
                     let res : NSHTTPURLResponse = response as! NSHTTPURLResponse
-                    let responseData:NSString  = NSString(data:data!, encoding:NSUTF8StringEncoding)!
-                    NSLog("Response ==> %@", responseData);
                     if (res.statusCode >= 200 && res.statusCode < 300) {
                         do {
                             let jsonData = try NSJSONSerialization.JSONObjectWithData(data!, options:NSJSONReadingOptions.MutableContainers ) as! NSDictionary

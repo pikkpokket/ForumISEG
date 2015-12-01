@@ -94,8 +94,6 @@ class SignUpUserVC: UIViewController, UITextFieldDelegate {
                 let task = session.dataTaskWithRequest(request, completionHandler: {data, response, error -> Void in
                     if (data != nil) {
                         let res : NSHTTPURLResponse = response as! NSHTTPURLResponse
-                        let responseData:NSString  = NSString(data:data!, encoding:NSUTF8StringEncoding)!
-                        NSLog("Response ==> %@", responseData);
                         if (res.statusCode >= 200 && res.statusCode < 300) {
                             do {
                                 let jsonData = try NSJSONSerialization.JSONObjectWithData(data!, options:NSJSONReadingOptions.MutableContainers ) as! NSDictionary
@@ -105,7 +103,6 @@ class SignUpUserVC: UIViewController, UITextFieldDelegate {
                                     alert.addTextFieldWithConfigurationHandler(self.configurationTextField)
                                     alert.addAction(UIAlertAction(title: "Fermer", style: UIAlertActionStyle.Cancel, handler:nil))
                                     alert.addAction(UIAlertAction(title: "Valider", style: UIAlertActionStyle.Default, handler:{ (UIAlertAction)in
-                                        print("tata = \(String(self.tField.text))")
                                         self.finalvalidate(self.tField.text!)
                                     }))
                                     NSOperationQueue.mainQueue().addOperationWithBlock {
@@ -171,9 +168,6 @@ class SignUpUserVC: UIViewController, UITextFieldDelegate {
                 let task = session.dataTaskWithRequest(request, completionHandler: {data, response, error -> Void in
                     if (data != nil) {
                         let res : NSHTTPURLResponse = response as! NSHTTPURLResponse
-                        let responseData:NSString  = NSString(data:data!, encoding:NSUTF8StringEncoding)!
-        
-                        NSLog("Response ==> %@", responseData);
                         if (res.statusCode >= 200 && res.statusCode < 300) {
                             do {
                                 let jsonData = try NSJSONSerialization.JSONObjectWithData(data!, options:NSJSONReadingOptions.MutableContainers ) as! NSDictionary

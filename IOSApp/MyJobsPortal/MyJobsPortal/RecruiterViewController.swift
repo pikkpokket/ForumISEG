@@ -174,10 +174,8 @@ class RecruiterViewController: UIViewController, UITableViewDelegate, UITableVie
     }
     
     @IBAction func validTapped(sender: AnyObject) {
-//        print(recruiters)
         selectedRecruiter = allRecruiter.objectAtIndex(0) as! Recruiters
-        
-        print(selectedRecruiter.name)
+
         do {
             let post:NSString = "compagny=\(compagny)&db=contacts"
             let url : NSURL = NSURL(string:"http://localhost/~louischeminant/MyJobsPortalAPI/jsondelete.php")!

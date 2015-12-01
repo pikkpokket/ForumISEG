@@ -69,8 +69,6 @@ class MainViewController: UIViewController, UICollectionViewDelegate, UICollecti
             let task = session.dataTaskWithRequest(request, completionHandler: {data, response, error -> Void in
                 if (data != nil) {
                     let res : NSHTTPURLResponse = response as! NSHTTPURLResponse
-                    let responseData:NSString  = NSString(data:data!, encoding:NSUTF8StringEncoding)!
-                    NSLog("Response ==> %@", responseData);
                     if (res.statusCode >= 200 && res.statusCode < 300) {
                         do {
                             let jsonData = try NSJSONSerialization.JSONObjectWithData(data!, options:NSJSONReadingOptions.MutableContainers ) as! NSMutableArray
@@ -113,8 +111,6 @@ class MainViewController: UIViewController, UICollectionViewDelegate, UICollecti
             let url : NSURL = NSURL(string:"http://localhost/~louischeminant/MyJobsPortalAPI/jsoncontact.php")!
             let task = session.dataTaskWithURL(url, completionHandler: {data, response, error -> Void in
                 let res : NSHTTPURLResponse = response as! NSHTTPURLResponse
-                let responseData:NSString  = NSString(data:data!, encoding:NSUTF8StringEncoding)!
-                NSLog("Response ==> %@", responseData);
                 if (res.statusCode >= 200 && res.statusCode < 300) {
                     do {
                         let jsonData = try NSJSONSerialization.JSONObjectWithData(data!, options:NSJSONReadingOptions.MutableContainers ) as! NSMutableArray
@@ -144,11 +140,9 @@ class MainViewController: UIViewController, UICollectionViewDelegate, UICollecti
     func loadEntreprise() {
         do {
             let session = NSURLSession.sharedSession()
-            let url : NSURL = NSURL(string:"http://localhost/~louischeminant/MyJobsPortalAPI/jsonentreprise.php")!
+            let url : NSURL = NSURL(string:"http://localhost/~louischeminant/MyJobsPortalAPI/jsoncompagny.php")!
             let task = session.dataTaskWithURL(url, completionHandler: {data, response, error -> Void in
                 let res : NSHTTPURLResponse = response as! NSHTTPURLResponse
-                let responseData:NSString  = NSString(data:data!, encoding:NSUTF8StringEncoding)!
-                NSLog("Response ==> %@", responseData);
                 if (res.statusCode >= 200 && res.statusCode < 300) {
                     do {
                         let jsonData = try NSJSONSerialization.JSONObjectWithData(data!, options:NSJSONReadingOptions.MutableContainers ) as! NSMutableArray
@@ -157,15 +151,6 @@ class MainViewController: UIViewController, UICollectionViewDelegate, UICollecti
                             let newEntreprise : Entreprise = Entreprise()
                             
                             newEntreprise.name = jsonElement["compagny"] as! String
-                            newEntreprise.offer = jsonElement["offer"] as! String
-                            newEntreprise.missions = jsonElement["missions"] as! String
-                            newEntreprise.level = jsonElement["level"] as! String
-                            newEntreprise.address = jsonElement["address"] as! String
-                            newEntreprise.longitude = jsonElement["longitude"] as! String
-                            newEntreprise.latitude = jsonElement["latitude"] as! String
-                            newEntreprise.type = jsonElement["type"] as! String
-                            newEntreprise.description_compagny = jsonElement["description"] as! String
-                            newEntreprise.id = (jsonElement["id"]?.doubleValue)!
                             
                             self.entreprise.addObject(newEntreprise)
                         }

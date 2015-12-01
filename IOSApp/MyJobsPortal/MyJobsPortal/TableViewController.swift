@@ -260,8 +260,6 @@ class TableViewController: UITableViewController, UITextViewDelegate {
             let task = session.dataTaskWithRequest(request, completionHandler: {data, response, error -> Void in
                 if (data != nil) {
                     let res : NSHTTPURLResponse = response as! NSHTTPURLResponse
-                    let responseData:NSString  = NSString(data:data!, encoding:NSUTF8StringEncoding)!
-                    NSLog("Response ==> %@", responseData);
                     if (res.statusCode >= 200 && res.statusCode < 300) {
                         do {
                             let jsonData = try NSJSONSerialization.JSONObjectWithData(data!, options:NSJSONReadingOptions.MutableContainers ) as! NSDictionary
@@ -323,8 +321,6 @@ class TableViewController: UITableViewController, UITextViewDelegate {
                 let task = session.dataTaskWithRequest(request, completionHandler: {data, response, error -> Void in
                     if (data != nil) {
                         let res : NSHTTPURLResponse = response as! NSHTTPURLResponse
-                        let responseData:NSString  = NSString(data:data!, encoding:NSUTF8StringEncoding)!
-                        NSLog("Response ==> %@", responseData);
                         if (res.statusCode >= 200 && res.statusCode < 300) {
                             do {
                                 let jsonData = try NSJSONSerialization.JSONObjectWithData(data!, options:NSJSONReadingOptions.MutableContainers ) as! NSDictionary
@@ -362,8 +358,6 @@ class TableViewController: UITableViewController, UITextViewDelegate {
                 let task = session.dataTaskWithRequest(request, completionHandler: {data, response, error -> Void in
                     if (data != nil) {
                         let res : NSHTTPURLResponse = response as! NSHTTPURLResponse
-                        let responseData:NSString  = NSString(data:data!, encoding:NSUTF8StringEncoding)!
-                        NSLog("Response ==> %@", responseData);
                         if (res.statusCode >= 200 && res.statusCode < 300) {
                             do {
                                 let jsonData = try NSJSONSerialization.JSONObjectWithData(data!, options:NSJSONReadingOptions.MutableContainers ) as! NSDictionary

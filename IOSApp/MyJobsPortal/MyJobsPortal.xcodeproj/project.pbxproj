@@ -7,8 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		950BEC3F1C0CA18F00ABA07A /* OfferPageItemViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 950BEC3E1C0CA18F00ABA07A /* OfferPageItemViewController.swift */; };
+		950BEC431C0CA35900ABA07A /* OfferViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 950BEC421C0CA35900ABA07A /* OfferViewController.swift */; };
 		954A65671C01259D007E4736 /* TableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 954A65661C01259D007E4736 /* TableViewController.swift */; };
-		954BC9B61BF78DDB00D5A991 /* OfferViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 954BC9B51BF78DDB00D5A991 /* OfferViewController.swift */; };
 		954BC9B81BF7BE6900D5A991 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 954BC9B71BF7BE6900D5A991 /* MapKit.framework */; };
 		954BC9BA1BF7CB4B00D5A991 /* Entreprise.swift in Sources */ = {isa = PBXBuildFile; fileRef = 954BC9B91BF7CB4B00D5A991 /* Entreprise.swift */; };
 		955878EA1BFD2BA800522DC7 /* SignUpSocietyVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 955878E91BFD2BA800522DC7 /* SignUpSocietyVC.swift */; };
@@ -38,8 +39,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		950BEC3E1C0CA18F00ABA07A /* OfferPageItemViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OfferPageItemViewController.swift; sourceTree = "<group>"; };
+		950BEC421C0CA35900ABA07A /* OfferViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OfferViewController.swift; sourceTree = "<group>"; };
 		954A65661C01259D007E4736 /* TableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableViewController.swift; sourceTree = "<group>"; };
-		954BC9B51BF78DDB00D5A991 /* OfferViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OfferViewController.swift; sourceTree = "<group>"; };
 		954BC9B71BF7BE6900D5A991 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		954BC9B91BF7CB4B00D5A991 /* Entreprise.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Entreprise.swift; sourceTree = "<group>"; };
 		955878E91BFD2BA800522DC7 /* SignUpSocietyVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignUpSocietyVC.swift; sourceTree = "<group>"; };
@@ -118,6 +120,7 @@
 				957DA4091BFF17020078022D /* Login */,
 				957DA40A1BFF172B0078022D /* Main */,
 				957DA40C1BFF18F20078022D /* Offer */,
+				95B1D3EB1C0D190500A588E5 /* Hour */,
 				95ED5A8D1C0A74440001A894 /* Planning */,
 			);
 			name = User;
@@ -157,9 +160,7 @@
 			children = (
 				95C44D721BF3A4720015AC58 /* MainUserViewController.swift */,
 				957BAD151BF6860200DE05B2 /* CollectionViewCell.swift */,
-				954BC9B91BF7CB4B00D5A991 /* Entreprise.swift */,
-				95ED5A831C09B29B0001A894 /* User.swift */,
-				95ED5A851C09C4170001A894 /* Contact.swift */,
+				95B1D3EC1C0D193400A588E5 /* ClassObject */,
 			);
 			name = Main;
 			sourceTree = "<group>";
@@ -177,9 +178,8 @@
 		957DA40C1BFF18F20078022D /* Offer */ = {
 			isa = PBXGroup;
 			children = (
-				954BC9B51BF78DDB00D5A991 /* OfferViewController.swift */,
-				957A532C1BF9016600271D0A /* HourTableViewController.swift */,
-				95ED5A871C0A584E0001A894 /* Hour.swift */,
+				950BEC421C0CA35900ABA07A /* OfferViewController.swift */,
+				950BEC3E1C0CA18F00ABA07A /* OfferPageItemViewController.swift */,
 			);
 			name = Offer;
 			sourceTree = "<group>";
@@ -193,6 +193,25 @@
 				959B78D91BF55ED900E23D28 /* SWRevealViewController.m */,
 			);
 			name = SlideMenu;
+			sourceTree = "<group>";
+		};
+		95B1D3EB1C0D190500A588E5 /* Hour */ = {
+			isa = PBXGroup;
+			children = (
+				957A532C1BF9016600271D0A /* HourTableViewController.swift */,
+				95ED5A871C0A584E0001A894 /* Hour.swift */,
+			);
+			name = Hour;
+			sourceTree = "<group>";
+		};
+		95B1D3EC1C0D193400A588E5 /* ClassObject */ = {
+			isa = PBXGroup;
+			children = (
+				954BC9B91BF7CB4B00D5A991 /* Entreprise.swift */,
+				95ED5A831C09B29B0001A894 /* User.swift */,
+				95ED5A851C09C4170001A894 /* Contact.swift */,
+			);
+			name = ClassObject;
 			sourceTree = "<group>";
 		};
 		95C44D521BF3236D0015AC58 = {
@@ -218,8 +237,8 @@
 				95C44D621BF3236D0015AC58 /* Main.storyboard */,
 				95C44D5E1BF3236D0015AC58 /* AppDelegate.swift */,
 				957DA4041BFF06400078022D /* FirstViewController.swift */,
-				957DA4071BFF16AB0078022D /* Compagny */,
 				957DA4061BFF16A40078022D /* User */,
+				957DA4071BFF16AB0078022D /* Compagny */,
 				959B78DB1BF55EE400E23D28 /* SlideMenu */,
 				957DA40B1BFF175A0078022D /* Others */,
 			);
@@ -326,18 +345,19 @@
 				954A65671C01259D007E4736 /* TableViewController.swift in Sources */,
 				959B78DA1BF55ED900E23D28 /* SWRevealViewController.m in Sources */,
 				95B573B31C06EA42004C73C5 /* Recruiters.swift in Sources */,
-				954BC9B61BF78DDB00D5A991 /* OfferViewController.swift in Sources */,
 				95ED5A8C1C0A732A0001A894 /* PlanningTableViewController.swift in Sources */,
 				957DA4051BFF06400078022D /* FirstViewController.swift in Sources */,
 				95ED5A861C09C4170001A894 /* Contact.swift in Sources */,
 				957DA4011BFEA1530078022D /* MainCompagnyViewController.swift in Sources */,
 				957DA40E1BFF863C0078022D /* RecruiterViewController.swift in Sources */,
+				950BEC431C0CA35900ABA07A /* OfferViewController.swift in Sources */,
 				95C44D731BF3A4720015AC58 /* MainUserViewController.swift in Sources */,
 				95C44D751BF3AF300015AC58 /* SignUpUserVC.swift in Sources */,
 				957DA4181BFFA3250078022D /* AddRecuiterViewController.swift in Sources */,
 				95ED5A8F1C0B00640001A894 /* EditOfferViewController.swift in Sources */,
 				955878EA1BFD2BA800522DC7 /* SignUpSocietyVC.swift in Sources */,
 				95ED5A841C09B29B0001A894 /* User.swift in Sources */,
+				950BEC3F1C0CA18F00ABA07A /* OfferPageItemViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
