@@ -154,7 +154,7 @@ class SignUpUserVC: UIViewController, UITextFieldDelegate {
             do {
                 let post:NSString = "lastname=\(lastname)&name=\(name)&class=\(classSchool)&mail=\(login)&password=\(password)&c_password=\(confirm_password)&phone=\(nbr_phone)&db=users"
                 let url : NSURL = NSURL(string:"http://localhost/~louischeminant/MyJobsPortalAPI/jsonsignup.php")!
-                let postData:NSData = post.dataUsingEncoding(NSASCIIStringEncoding)!
+                let postData:NSData = post.dataUsingEncoding(NSUTF8StringEncoding)!
                 let postLength:NSString = String(postData.length)
                 let session = NSURLSession.sharedSession()
         

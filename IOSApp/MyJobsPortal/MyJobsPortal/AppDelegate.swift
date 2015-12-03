@@ -22,13 +22,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             self.window?.rootViewController = mainViewController
             self.window?.makeKeyAndVisible()
         }
-//        let isLoggedInCompagny:Int = prefs.integerForKey("ISLOGGEDINCOMPAGNY") as Int
-//        if (isLoggedInCompagny == 1) {
-//            let storyboard = UIStoryboard(name: "Main", bundle: nil)
-//            let mainViewController = storyboard.instantiateViewControllerWithIdentifier("MainCompagny") as? SWRevealViewController
-//            self.window?.rootViewController = mainViewController
-//            self.window?.makeKeyAndVisible()
-//        }
+        let isLoggedInCompagny:Int = prefs.integerForKey("ISLOGGEDINCOMPAGNY") as Int
+        if (isLoggedInCompagny == 1) {
+            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+            let mainViewController = storyboard.instantiateViewControllerWithIdentifier("MainCompagny") as? SWRevealViewController
+            self.window?.rootViewController = mainViewController
+            self.window?.makeKeyAndVisible()
+        }
 
         return true
     }

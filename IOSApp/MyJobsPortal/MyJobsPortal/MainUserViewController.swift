@@ -73,6 +73,7 @@ class MainViewController: UIViewController, UICollectionViewDelegate, UICollecti
                         do {
                             let jsonData = try NSJSONSerialization.JSONObjectWithData(data!, options:NSJSONReadingOptions.MutableContainers ) as! NSMutableArray
                             for (var i = 0; i < jsonData.count; i++) {
+                                NSUserDefaults.standardUserDefaults().setObject(jsonData, forKey: "userData")
                                 let jsonElement : NSDictionary = jsonData[i] as! NSDictionary
                                 let newUser : User = User()
                                 

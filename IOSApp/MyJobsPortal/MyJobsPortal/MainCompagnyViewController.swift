@@ -12,6 +12,7 @@ class MainCompagnyViewController: UIViewController {
 
     @IBOutlet weak var lblName: UILabel!
     @IBOutlet weak var menuBtn: UIBarButtonItem!
+        var selectedEntreprise : Entreprise = Entreprise()
     
     override func viewDidLoad() {
         super.viewDidLoad()

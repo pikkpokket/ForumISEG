@@ -23,7 +23,7 @@ class HourTableViewController: UITableViewController {
         
         do {
             let post:NSString = "id=\(selectedEntreprise.id)&user="
-            let url : NSURL = NSURL(string:"http://localhost/~louischeminant/MyJobsPortalAPI/jsonsloadappointment.php")!
+            let url : NSURL = NSURL(string:"http://localhost/~louischeminant/MyJobsPortalAPI/jsonloadappointment.php")!
             let postData:NSData = post.dataUsingEncoding(NSUTF8StringEncoding)!
             let postLength:NSString = String(postData.length)
             let session = NSURLSession.sharedSession()
@@ -112,9 +112,8 @@ class HourTableViewController: UITableViewController {
     
     func validateHour() {
         let titleError : NSString = "La connexion a échoué !"
-        let name = "\(selectedUser.name) \(selectedUser.lastName)"
         do {
-            let post:NSString = "user=\(name)&start=\(selectedHour.start)&compagny=\(selectedEntreprise.name)"
+            let post:NSString = "user=\(selectedUser.mail)&start=\(selectedHour.start)&compagny=\(selectedEntreprise.name)&id=\(Int(selectedEntreprise.id))"
             let url : NSURL = NSURL(string:"http://localhost/~louischeminant/MyJobsPortalAPI/jsonvalidappointment.php")!
             let postData:NSData = post.dataUsingEncoding(NSUTF8StringEncoding)!
             let postLength:NSString = String(postData.length)
@@ -130,6 +129,8 @@ class HourTableViewController: UITableViewController {
             let task = session.dataTaskWithRequest(request, completionHandler: {data, response, error -> Void in
                 if (data != nil) {
                     let res : NSHTTPURLResponse = response as! NSHTTPURLResponse
+                    let responseData:NSString  = NSString(data:data!, encoding:NSUTF8StringEncoding)!
+                    NSLog("Response ==> %@", responseData);
                     if (res.statusCode >= 200 && res.statusCode < 300) {
                         do {
                             let jsonData = try NSJSONSerialization.JSONObjectWithData(data!, options:NSJSONReadingOptions.MutableContainers ) as! NSDictionary

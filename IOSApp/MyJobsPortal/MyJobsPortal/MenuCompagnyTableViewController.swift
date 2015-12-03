@@ -1,14 +1,14 @@
 //
-//  MenuTableViewController.swift
+//  MenuCompagnyTableViewController.swift
 //  MyJobsPortal
 //
-//  Created by Louis Cheminant on 13/11/2015.
+//  Created by Louis Cheminant on 03/12/2015.
 //  Copyright © 2015 Louis Cheminant. All rights reserved.
 //
 
 import UIKit
 
-class MenuTableViewController: UITableViewController {
+class MenuCompagnyTableViewController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -16,11 +16,10 @@ class MenuTableViewController: UITableViewController {
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
 
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        if indexPath.row == 4 {
+        if indexPath.row == 5 {
             let appDomain = NSBundle.mainBundle().bundleIdentifier
             NSUserDefaults.standardUserDefaults().removePersistentDomainForName(appDomain!)
         }

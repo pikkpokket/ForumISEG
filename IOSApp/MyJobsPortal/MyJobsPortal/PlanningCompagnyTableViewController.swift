@@ -1,24 +1,30 @@
 //
-//  PlanningTableViewController.swift
+//  PlanningCompagnyTableViewController.swift
 //  MyJobsPortal
 //
-//  Created by Louis Cheminant on 29/11/2015.
+//  Created by Louis Cheminant on 02/12/2015.
 //  Copyright © 2015 Louis Cheminant. All rights reserved.
 //
 
 import UIKit
 
-class PlanningTableViewController: UITableViewController {
+class PlanningCompagnyTableViewController: UITableViewController {
 
     var planning : NSMutableArray = NSMutableArray()
-    var selectedUser : User = User()
+    var selectedEntreprise : Entreprise = Entreprise()
     var selectedPlanning : Planning = Planning()
     let titleError : NSString = "La connexion a échoué !"
+    var compagny:String = ""
     
     @IBOutlet weak var menuBtn: UIBarButtonItem!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        if let data : NSArray = NSUserDefaults.standardUserDefaults().valueForKey("compagnyData") as? NSArray {
+            let jsonElement : NSDictionary = data[0] as! NSDictionary
+            selectedEntreprise.name = jsonElement["name"] as! String
+        }
         
         if revealViewController() != nil {
             revealViewController().rightViewRevealWidth = 230
@@ -26,13 +32,9 @@ class PlanningTableViewController: UITableViewController {
             menuBtn.action = "rightRevealToggle:"
             view.addGestureRecognizer(self.revealViewController().panGestureRecognizer())
         }
-        
-        if let data : NSArray = NSUserDefaults.standardUserDefaults().valueForKey("userData") as? NSArray {
-            let jsonElement : NSDictionary = data[0] as! NSDictionary
-            selectedUser.mail = jsonElement["mail"] as! String
-        }
-        let post:NSString = "user=\(selectedUser.mail)"
-        let url : NSURL = NSURL(string:"http://localhost/~louischeminant/MyJobsPortalAPI/jsonloadRDV.php")!
+
+        let post:NSString = "compagny=\(selectedEntreprise.name)"
+        let url : NSURL = NSURL(string:"http://localhost/~louischeminant/MyJobsPortalAPI/jsonloadRDVcompagny.php")!
         let postData:NSData = post.dataUsingEncoding(NSUTF8StringEncoding)!
         let postLength:NSString = String(postData.length)
         let session = NSURLSession.sharedSession()
@@ -55,8 +57,11 @@ class PlanningTableViewController: UITableViewController {
                             let newPlanning : Planning = Planning()
                             
                             newPlanning.hour = jsonElement["start"] as! String
-                            newPlanning.compagny = jsonElement["compagny"] as! String
-                            newPlanning.offer = jsonElement["offer"] as! String
+                            newPlanning.student_name = jsonElement["name"] as! String
+                            newPlanning.student_lastname = jsonElement["lastname"] as! String
+                            newPlanning.class_student = jsonElement["class"] as! String
+                            newPlanning.mail = jsonElement["mail"] as! String
+                            newPlanning.phone = jsonElement["phone"] as! String
                             
                             self.planning.addObject(newPlanning)
                         }
@@ -76,15 +81,15 @@ class PlanningTableViewController: UITableViewController {
         })
         task.resume()
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
-
+    
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         return 1
     }
-
+    
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return planning.count
     }
@@ -96,11 +101,11 @@ class PlanningTableViewController: UITableViewController {
             self.presentViewController(alert, animated: true){}
         }
     }
-
+    
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("planningCell", forIndexPath: indexPath)
+        let cell = tableView.dequeueReusableCellWithIdentifier("planningCompagnyCell", forIndexPath: indexPath)
         selectedPlanning = planning.objectAtIndex(indexPath.row) as! Planning
-        cell.textLabel!.text =  "\(selectedPlanning.hour) - \(selectedPlanning.compagny) - \(selectedPlanning.offer)"
+        cell.textLabel!.text =  "\(selectedPlanning.hour) - \(selectedPlanning.student_name) \(selectedPlanning.student_lastname) - \(selectedPlanning.class_student) - \(selectedPlanning.mail) - \(selectedPlanning.phone)"
         return cell
     }
 }

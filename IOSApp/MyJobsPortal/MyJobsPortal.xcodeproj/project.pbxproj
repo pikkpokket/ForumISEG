@@ -9,9 +9,14 @@
 /* Begin PBXBuildFile section */
 		950BEC3F1C0CA18F00ABA07A /* OfferPageItemViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 950BEC3E1C0CA18F00ABA07A /* OfferPageItemViewController.swift */; };
 		950BEC431C0CA35900ABA07A /* OfferViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 950BEC421C0CA35900ABA07A /* OfferViewController.swift */; };
+		952D49051C0F99F9001EED0A /* ManageProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 952D49041C0F99F9001EED0A /* ManageProfileViewController.swift */; };
+		952D490A1C101D3F001EED0A /* MenuCompagnyTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 952D49091C101D3F001EED0A /* MenuCompagnyTableViewController.swift */; };
+		952D490C1C105623001EED0A /* FavoriteTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 952D490B1C105623001EED0A /* FavoriteTableViewController.swift */; };
 		954A65671C01259D007E4736 /* TableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 954A65661C01259D007E4736 /* TableViewController.swift */; };
 		954BC9B81BF7BE6900D5A991 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 954BC9B71BF7BE6900D5A991 /* MapKit.framework */; };
 		954BC9BA1BF7CB4B00D5A991 /* Entreprise.swift in Sources */ = {isa = PBXBuildFile; fileRef = 954BC9B91BF7CB4B00D5A991 /* Entreprise.swift */; };
+		95514DDA1C0D9A5A00B39EE4 /* Planning.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95514DD91C0D9A5A00B39EE4 /* Planning.swift */; };
+		95514DDF1C0EFB9F00B39EE4 /* PlanningCompagnyTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95514DDE1C0EFB9F00B39EE4 /* PlanningCompagnyTableViewController.swift */; };
 		955878EA1BFD2BA800522DC7 /* SignUpSocietyVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 955878E91BFD2BA800522DC7 /* SignUpSocietyVC.swift */; };
 		957A532D1BF9016600271D0A /* HourTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 957A532C1BF9016600271D0A /* HourTableViewController.swift */; };
 		957BAD141BF6271800DE05B2 /* MenuTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 957BAD131BF6271800DE05B2 /* MenuTableViewController.swift */; };
@@ -41,9 +46,14 @@
 /* Begin PBXFileReference section */
 		950BEC3E1C0CA18F00ABA07A /* OfferPageItemViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OfferPageItemViewController.swift; sourceTree = "<group>"; };
 		950BEC421C0CA35900ABA07A /* OfferViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OfferViewController.swift; sourceTree = "<group>"; };
+		952D49041C0F99F9001EED0A /* ManageProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ManageProfileViewController.swift; sourceTree = "<group>"; };
+		952D49091C101D3F001EED0A /* MenuCompagnyTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuCompagnyTableViewController.swift; sourceTree = "<group>"; };
+		952D490B1C105623001EED0A /* FavoriteTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FavoriteTableViewController.swift; sourceTree = "<group>"; };
 		954A65661C01259D007E4736 /* TableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableViewController.swift; sourceTree = "<group>"; };
 		954BC9B71BF7BE6900D5A991 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		954BC9B91BF7CB4B00D5A991 /* Entreprise.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Entreprise.swift; sourceTree = "<group>"; };
+		95514DD91C0D9A5A00B39EE4 /* Planning.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Planning.swift; sourceTree = "<group>"; };
+		95514DDE1C0EFB9F00B39EE4 /* PlanningCompagnyTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = PlanningCompagnyTableViewController.swift; sourceTree = "<group>"; };
 		955878E91BFD2BA800522DC7 /* SignUpSocietyVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignUpSocietyVC.swift; sourceTree = "<group>"; };
 		957A532C1BF9016600271D0A /* HourTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HourTableViewController.swift; sourceTree = "<group>"; };
 		957BAD131BF6271800DE05B2 /* MenuTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuTableViewController.swift; sourceTree = "<group>"; };
@@ -86,6 +96,30 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		952D49061C0F99FF001EED0A /* MangeProfile */ = {
+			isa = PBXGroup;
+			children = (
+				952D49041C0F99F9001EED0A /* ManageProfileViewController.swift */,
+			);
+			name = MangeProfile;
+			sourceTree = "<group>";
+		};
+		952D490D1C10562E001EED0A /* Favorites */ = {
+			isa = PBXGroup;
+			children = (
+				952D490B1C105623001EED0A /* FavoriteTableViewController.swift */,
+			);
+			name = Favorites;
+			sourceTree = "<group>";
+		};
+		95514DDD1C0EFB4300B39EE4 /* Planning */ = {
+			isa = PBXGroup;
+			children = (
+				95514DDE1C0EFB9F00B39EE4 /* PlanningCompagnyTableViewController.swift */,
+			);
+			name = Planning;
+			sourceTree = "<group>";
+		};
 		957B8B2B1C08B2B300930CE2 /* Main */ = {
 			isa = PBXGroup;
 			children = (
@@ -122,6 +156,7 @@
 				957DA40C1BFF18F20078022D /* Offer */,
 				95B1D3EB1C0D190500A588E5 /* Hour */,
 				95ED5A8D1C0A74440001A894 /* Planning */,
+				952D490D1C10562E001EED0A /* Favorites */,
 			);
 			name = User;
 			sourceTree = "<group>";
@@ -133,6 +168,8 @@
 				957B8B2B1C08B2B300930CE2 /* Main */,
 				957B8B2D1C08B2C500930CE2 /* Offer */,
 				957B8B2C1C08B2BE00930CE2 /* Recruiter */,
+				95514DDD1C0EFB4300B39EE4 /* Planning */,
+				952D49061C0F99FF001EED0A /* MangeProfile */,
 			);
 			name = Compagny;
 			sourceTree = "<group>";
@@ -188,6 +225,7 @@
 			isa = PBXGroup;
 			children = (
 				957BAD131BF6271800DE05B2 /* MenuTableViewController.swift */,
+				952D49091C101D3F001EED0A /* MenuCompagnyTableViewController.swift */,
 				959B78D71BF55ED900E23D28 /* MyJobsPortal-Bridging-Header.h */,
 				959B78D81BF55ED900E23D28 /* SWRevealViewController.h */,
 				959B78D91BF55ED900E23D28 /* SWRevealViewController.m */,
@@ -249,6 +287,7 @@
 			isa = PBXGroup;
 			children = (
 				95ED5A8B1C0A732A0001A894 /* PlanningTableViewController.swift */,
+				95514DD91C0D9A5A00B39EE4 /* Planning.swift */,
 			);
 			name = Planning;
 			sourceTree = "<group>";
@@ -337,13 +376,17 @@
 				95C44D711BF32CE10015AC58 /* LoginUserVC.swift in Sources */,
 				95FF21E81BFB2FBD00703A10 /* LoginSocietyVC.swift in Sources */,
 				957A532D1BF9016600271D0A /* HourTableViewController.swift in Sources */,
+				95514DDA1C0D9A5A00B39EE4 /* Planning.swift in Sources */,
+				952D490C1C105623001EED0A /* FavoriteTableViewController.swift in Sources */,
 				95C44D5F1BF3236D0015AC58 /* AppDelegate.swift in Sources */,
 				957BAD141BF6271800DE05B2 /* MenuTableViewController.swift in Sources */,
+				952D49051C0F99F9001EED0A /* ManageProfileViewController.swift in Sources */,
 				957BAD161BF6860200DE05B2 /* CollectionViewCell.swift in Sources */,
 				95ED5A881C0A584E0001A894 /* Hour.swift in Sources */,
 				954BC9BA1BF7CB4B00D5A991 /* Entreprise.swift in Sources */,
 				954A65671C01259D007E4736 /* TableViewController.swift in Sources */,
 				959B78DA1BF55ED900E23D28 /* SWRevealViewController.m in Sources */,
+				952D490A1C101D3F001EED0A /* MenuCompagnyTableViewController.swift in Sources */,
 				95B573B31C06EA42004C73C5 /* Recruiters.swift in Sources */,
 				95ED5A8C1C0A732A0001A894 /* PlanningTableViewController.swift in Sources */,
 				957DA4051BFF06400078022D /* FirstViewController.swift in Sources */,
@@ -353,6 +396,7 @@
 				950BEC431C0CA35900ABA07A /* OfferViewController.swift in Sources */,
 				95C44D731BF3A4720015AC58 /* MainUserViewController.swift in Sources */,
 				95C44D751BF3AF300015AC58 /* SignUpUserVC.swift in Sources */,
+				95514DDF1C0EFB9F00B39EE4 /* PlanningCompagnyTableViewController.swift in Sources */,
 				957DA4181BFFA3250078022D /* AddRecuiterViewController.swift in Sources */,
 				95ED5A8F1C0B00640001A894 /* EditOfferViewController.swift in Sources */,
 				955878EA1BFD2BA800522DC7 /* SignUpSocietyVC.swift in Sources */,
